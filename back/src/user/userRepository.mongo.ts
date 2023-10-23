@@ -15,6 +15,15 @@ const userReponsitoryMongo: UserRepositoryInterface = {
     findByEmail: async (email) => {
         const user = await UserModel.findOne({ email });
         return user;
+    },
+    logUser: async (data) => {
+        const user = await UserModel.findOne({ email: data.email });
+        const isPasswordMatching = await bcrypt.compare(
+            data.password,
+            user!.password
+        );
+
+        return isPasswordMatching ? user : null;
     }
 };
 
