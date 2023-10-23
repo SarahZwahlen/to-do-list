@@ -25,6 +25,10 @@ const userRepositoryInMemory: UserRepositoryInterface & {
         const user = this.users.find((user) => (user.email = email));
         return user ? user : null;
     },
+    fingById: async function (userId) {
+        const user = this.users.find((user) => user.id === userId);
+        return user ? user : null;
+    },
     logUser: async function (data) {
         const user = await this.findByEmail(data.email);
 
