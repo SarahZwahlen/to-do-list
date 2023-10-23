@@ -1,8 +1,10 @@
 import cors from 'cors';
 import express from 'express';
+import session from 'express-session';
 import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import router from './router';
+import { User } from './infrastructure/models/user.model';
 
 dotenv.config();
 
@@ -13,12 +15,32 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(
+    session({
+        secret: 'keyboard cat',
+        resave: false,
+        saveUninitialized: true,
+        cookie: {
+            path: '/',
+            httpOnly: true,
+            secure: false,
+            sameSite: true
+        }
+    })
+);
+
+app.use(
     cors({
         origin: process.env.FRONT_LOCAL_URL,
         credentials: true,
         optionsSuccessStatus: 200
     })
 );
+
+declare module 'express-session' {
+    interface SessionData {
+        user: User;
+    }
+}
 
 mongoose.set('strictQuery', false);
 mongoose.set('toJSON', { getters: true });
