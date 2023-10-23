@@ -5,6 +5,8 @@ import { Layout } from "./components/Layout/Layout";
 import privateRoutes from "./router/privateRoutes";
 import publicRoutes from "./router/publicRoutes";
 
+import './app.scss'
+
 function App() {
 
   return (
