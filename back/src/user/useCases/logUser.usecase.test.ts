@@ -1,4 +1,4 @@
-import buildUser from '../../tooling/builders/user.buider';
+import userBuilder from '../../tooling/builders/user.buider';
 import userRepositoryInMemory from '../userRepository.inMemory';
 import logUserUseCase from './logUser.usecase';
 
@@ -6,7 +6,7 @@ describe('Log user', () => {
     beforeEach(() => userRepositoryInMemory.reset());
     test('Happy path', async () => {
         //given a user that exists in database
-        const userData = buildUser({});
+        const userData = userBuilder({});
         userRepositoryInMemory.givenExistingUser(userData);
 
         //given received data
@@ -33,7 +33,7 @@ describe('Log user', () => {
 
     test('Password mismatch', async () => {
         //Given a user that exists in database
-        const userData = buildUser({});
+        const userData = userBuilder({});
         userRepositoryInMemory.givenExistingUser(userData);
 
         //Given received data

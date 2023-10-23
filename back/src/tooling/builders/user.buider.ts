@@ -1,7 +1,7 @@
 import { randomUUID } from 'crypto';
 import { User } from '../../infrastructure/models/user.model';
 
-const buildUser = (data: Partial<User>) => {
+const userBuilder = (data: Partial<User>) => {
     const newUser = {
         id: randomUUID(),
         email: 'john@doe.com',
@@ -14,4 +14,4 @@ const buildUser = (data: Partial<User>) => {
     return newUser;
 };
 
-export default buildUser;
+export default userBuilder;
