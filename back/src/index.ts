@@ -2,6 +2,7 @@ import cors from 'cors';
 import express from 'express';
 import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import router from './router';
 
 dotenv.config();
 
@@ -28,9 +29,10 @@ mongoose.connect(
 mongoose.connection.on('error', () =>
     console.log('Database connection failed')
 );
-mongoose.connection.on('open', () =>
-    console.log('Database connection is successfull')
-);
+mongoose.connection.on('open', () => {
+    app.use('/', router);
+    console.log('Database connection is successfull');
+});
 app.listen(process.env.PORT_BACKEND, () =>
     console.log(`server is running at ${process.env.BACK_LOCAL_URL}`)
 );
