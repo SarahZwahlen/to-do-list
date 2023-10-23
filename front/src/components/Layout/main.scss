@@ -1,0 +1,25 @@
+
+.main {
+  border: 1px solid
+}
+header {
+  border: 1px solid red;
+  max-height: 15vh;
+}
+footer {
+  color: white;
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    margin: 0;
+    padding: 0;
+    a {
+      color: white;
+    }
+  }
+  .git-hub-logo {
+    width: 20px;
+  }
+}

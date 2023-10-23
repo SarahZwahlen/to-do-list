@@ -1,0 +1,17 @@
+body {
+  margin: 0px;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: rgb(24, 23, 36);
+  color: white;
+}
+.App {
+  border: 1px solid;
+  min-height: 100vh;
+  min-width: 100vw;
+  box-sizing: border-box;
+  background-image: url('./assets/images/bg-mobile-dark.jpg');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: contain;
+}
