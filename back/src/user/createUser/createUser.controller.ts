@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import userRepositoryMongo from '../userRepository.mongo';
+import userRepositoryMongo from '../../infrastructure/repositories/userRepository.mongo';
 import { User } from '../../infrastructure/models/user.model';
-import createUserUseCase from '../useCases/createUser.usecase';
+import createUserUseCase from './createUser.usecase';
 
 const createUserController = async (req: Request, res: Response) => {
     const body: User = req.body;

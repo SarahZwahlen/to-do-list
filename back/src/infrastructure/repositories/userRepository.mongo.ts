@@ -1,5 +1,5 @@
-import UserModel from '../infrastructure/models/user.model';
-import { UserRepositoryInterface } from './userRepository.interface';
+import UserModel from '../models/user.model';
+import { UserRepositoryInterface } from '../persistence/userRepository.interface';
 import bcrypt from 'bcrypt';
 
 const userRepositoryMongo: UserRepositoryInterface = {

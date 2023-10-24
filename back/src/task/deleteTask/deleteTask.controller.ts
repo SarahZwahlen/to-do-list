@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import deleteTaskUseCase from '../useCases/deleteTask.usecase';
-import taskRepositoryMongo from '../taskRepository.mongo';
-import userRepositoryMongo from '../../user/userRepository.mongo';
+import deleteTaskUseCase from './deleteTask.usecase';
+import taskRepositoryMongo from '../../infrastructure/repositories/taskRepository.mongo';
+import userRepositoryMongo from '../../infrastructure/repositories/userRepository.mongo';
 
 const deleteTaskController = async (req: Request, res: Response) => {
     const userSession = req.session.user;

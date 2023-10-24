@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import logUserUseCase from '../useCases/logUser.usecase';
-import userRepositoryMongo from '../userRepository.mongo';
+import logUserUseCase from './logUser.usecase';
+import userRepositoryMongo from '../../infrastructure/repositories/userRepository.mongo';
 
 const logUserController = async (req: Request, res: Response) => {
     const body = req.body;

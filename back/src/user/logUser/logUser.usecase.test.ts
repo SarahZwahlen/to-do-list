@@ -1,5 +1,5 @@
 import userBuilder from '../../tooling/builders/user.buider';
-import userRepositoryInMemory from '../userRepository.inMemory';
+import userRepositoryInMemory from '../../infrastructure/repositories/userRepository.inMemory';
 import logUserUseCase from './logUser.usecase';
 
 describe('Log user', () => {

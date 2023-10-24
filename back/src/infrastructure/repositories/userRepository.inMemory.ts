@@ -1,5 +1,5 @@
-import { User } from '../infrastructure/models/user.model';
-import { UserRepositoryInterface } from './userRepository.interface';
+import { User } from '../models/user.model';
+import { UserRepositoryInterface } from '../persistence/userRepository.interface';
 
 const userRepositoryInMemory: UserRepositoryInterface & {
     users: User[];
