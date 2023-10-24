@@ -1,18 +1,20 @@
 import { Task } from '../../infrastructure/models/task.model';
 import { UserRepositoryInterface } from '../../user/userRepository.interface';
-import { taskRepositoryInterface } from '../taskRepository.interface';
+import { TaskRepositoryInterface } from '../taskRepository.interface';
 
 const createTaskUseCase = async (
-    data: Partial<Task>,
+    data: Partial<Pick<Task, 'title' | 'description'>>,
     userId: string,
-    taskRepo: taskRepositoryInterface,
+    taskRepo: TaskRepositoryInterface,
     userRepo: UserRepositoryInterface
 ) => {
-    //Vérifier que le user existe en BDD
-    const user = await userRepo.fingById(userId);
+    const user = await userRepo.findById(userId);
 
     if (!user) {
         throw new Error('User does not exists in database');
     }
-    // Créer la tâche
+
+    return await taskRepo.createTask(data, user);
 };
+
+export default createTaskUseCase;

@@ -1,8 +1,8 @@
 import { randomUUID } from 'crypto';
 import { Task } from '../infrastructure/models/task.model';
-import { taskRepositoryInterface } from './taskRepository.interface';
+import { TaskRepositoryInterface } from './taskRepository.interface';
 
-const taskRepositoryInMemory: taskRepositoryInterface & {
+const taskRepositoryInMemory: TaskRepositoryInterface & {
     tasks: Task[];
     reset: () => void;
     giventExistingTask: (newTask: Task) => void;
@@ -16,12 +16,15 @@ const taskRepositoryInMemory: taskRepositoryInterface & {
     },
     createTask: async function (task, owner) {
         const newTask: Task = {
-            ...task,
+            title: task.title!,
+            description: task.description ? task.description : null,
             id: randomUUID(),
             owner: owner
         };
 
         this.tasks.push(newTask);
+
+        return newTask;
     }
 };
 

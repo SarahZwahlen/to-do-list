@@ -1,11 +1,11 @@
 import { Task } from '../infrastructure/models/task.model';
 import { User } from '../infrastructure/models/user.model';
 
-type taskRepositoryInterface = {
+type TaskRepositoryInterface = {
     createTask: (
-        data: Pick<Task, 'title' | 'description'>,
+        data: Partial<Pick<Task, 'title' | 'description'>>,
         owner: User
-    ) => Promise<void>;
+    ) => Promise<Task | null>;
 };
 
-export type { taskRepositoryInterface };
+export type { TaskRepositoryInterface };
