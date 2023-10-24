@@ -6,6 +6,8 @@ type TaskRepositoryInterface = {
         data: Partial<Pick<Task, 'title' | 'description'>>,
         owner: User
     ) => Promise<Task | null>;
+    findById: (taskId: string) => Promise<Task | null>;
+    deleteTask: (taskId: string) => Promise<void>;
 };
 
 export type { TaskRepositoryInterface };

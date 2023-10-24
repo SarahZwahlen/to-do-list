@@ -7,6 +7,12 @@ const taskReponsitoryMongo: TaskRepositoryInterface = {
 
         await task.save();
         return task;
+    },
+    findById: async (taskId) => {
+        return await TaskModel.findOne({ _id: taskId }).populate('owner');
+    },
+    deleteTask: async (taskId) => {
+        await TaskModel.deleteOne({ _id: taskId });
     }
 };
 
