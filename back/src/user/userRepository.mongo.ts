@@ -13,8 +13,10 @@ const userReponsitoryMongo: UserRepositoryInterface = {
         return user;
     },
     findByEmail: async (email) => {
-        const user = await UserModel.findOne({ email });
-        return user;
+        return await UserModel.findOne({ email });
+    },
+    findById: async (userId) => {
+        return await UserModel.findOne({ _id: userId });
     },
     logUser: async (data) => {
         const user = await UserModel.findOne({ email: data.email });
