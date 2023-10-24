@@ -1,5 +1,4 @@
-import { Task } from '../infrastructure/models/task.model';
-import { User } from '../infrastructure/models/user.model';
+import { User } from '../models/user.model';
 
 type UserRepositoryInterface = {
     createUser: (data: User) => Promise<User>;

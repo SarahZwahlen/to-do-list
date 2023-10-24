@@ -1,6 +1,6 @@
 import { User } from '../../infrastructure/models/user.model';
 import emailValidator from '../../tooling/validators/email.validator';
-import { UserRepositoryInterface } from '../userRepository.interface';
+import { UserRepositoryInterface } from '../../infrastructure/persistence/userRepository.interface';
 
 const createUserUseCase = async (
     data: User,

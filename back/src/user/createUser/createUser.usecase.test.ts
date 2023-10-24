@@ -1,4 +1,4 @@
-import userRepositoryInMemory from '../userRepository.inMemory';
+import userRepositoryInMemory from '../../infrastructure/repositories/userRepository.inMemory';
 import userBuilder from '../../tooling/builders/user.buider';
 import createUserUseCase from './createUser.usecase';
 

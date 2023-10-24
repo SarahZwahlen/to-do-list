@@ -1,6 +1,6 @@
 import { Task } from '../../infrastructure/models/task.model';
-import { UserRepositoryInterface } from '../../user/userRepository.interface';
-import { TaskRepositoryInterface } from '../taskRepository.interface';
+import { UserRepositoryInterface } from '../../infrastructure/persistence/userRepository.interface';
+import { TaskRepositoryInterface } from '../../infrastructure/persistence/taskRepository.interface';
 
 const createTaskUseCase = async (
     data: Partial<Pick<Task, 'title' | 'description'>>,

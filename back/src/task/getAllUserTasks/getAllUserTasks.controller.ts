@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import getAllUserTasksUseCase from '../useCases/getAllUserTasks.usecase';
-import userRepositoryMongo from '../../user/userRepository.mongo';
-import taskRepositoryMongo from '../taskRepository.mongo';
+import getAllUserTasksUseCase from './getAllUserTasks.usecase';
+import userRepositoryMongo from '../../infrastructure/repositories/userRepository.mongo';
+import taskRepositoryMongo from '../../infrastructure/repositories/taskRepository.mongo';
 
 const getAllUserTasksController = async (req: Request, res: Response) => {
     const userSession = req.session.user;

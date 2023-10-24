@@ -1,5 +1,5 @@
-import TaskModel from '../infrastructure/models/task.model';
-import { TaskRepositoryInterface } from './taskRepository.interface';
+import TaskModel from '../models/task.model';
+import { TaskRepositoryInterface } from '../persistence/taskRepository.interface';
 
 const taskRepositoryMongo: TaskRepositoryInterface = {
     createTask: async (data, owner) => {

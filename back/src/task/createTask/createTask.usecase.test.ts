@@ -1,7 +1,7 @@
 import taskBuilder from '../../tooling/builders/task.builder';
 import userBuilder from '../../tooling/builders/user.buider';
-import userRepositoryInMemory from '../../user/userRepository.inMemory';
-import taskRepositoryInMemory from '../taskRepository.inMemory';
+import userRepositoryInMemory from '../../infrastructure/repositories/userRepository.inMemory';
+import taskRepositoryInMemory from '../../infrastructure/repositories/taskRepository.inMemory';
 import createTaskUseCase from './createTask.usecase';
 
 describe('User wants to create a new task', () => {

@@ -1,5 +1,5 @@
-import { Task } from '../infrastructure/models/task.model';
-import { User } from '../infrastructure/models/user.model';
+import { Task } from '../models/task.model';
+import { User } from '../models/user.model';
 
 type TaskRepositoryInterface = {
     createTask: (

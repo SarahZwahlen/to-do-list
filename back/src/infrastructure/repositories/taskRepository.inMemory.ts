@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
-import { Task } from '../infrastructure/models/task.model';
-import { TaskRepositoryInterface } from './taskRepository.interface';
+import { Task } from '../models/task.model';
+import { TaskRepositoryInterface } from '../persistence/taskRepository.interface';
 
 const taskRepositoryInMemory: TaskRepositoryInterface & {
     tasks: Task[];

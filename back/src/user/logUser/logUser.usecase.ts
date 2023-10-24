@@ -1,5 +1,5 @@
 import { User } from '../../infrastructure/models/user.model';
-import { UserRepositoryInterface } from '../userRepository.interface';
+import { UserRepositoryInterface } from '../../infrastructure/persistence/userRepository.interface';
 
 const logUserUseCase = async (
     data: Pick<User, 'email' | 'password'>,
