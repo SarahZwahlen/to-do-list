@@ -1,4 +1,4 @@
-import TaskModel from '../models/task.model';
+import TaskModel, { Task } from '../models/task.model';
 import { TaskRepositoryInterface } from '../persistence/taskRepository.interface';
 
 const taskRepositoryMongo: TaskRepositoryInterface = {
@@ -16,6 +16,13 @@ const taskRepositoryMongo: TaskRepositoryInterface = {
     },
     getAllTasks: async (userId) => {
         return await TaskModel.find({ owner: userId });
+    },
+    updateTask: async (data) => {
+        const updateData: Partial<Task> = { ...data };
+        delete updateData['id'];
+        return await TaskModel.findOneAndUpdate({ _id: data.id }, updateData, {
+            new: true
+        });
     }
 };
 

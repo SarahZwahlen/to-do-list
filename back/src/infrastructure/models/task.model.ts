@@ -6,6 +6,7 @@ type Task = {
     title: string;
     description?: string | null;
     owner: User;
+    state: 'to do' | 'in progress' | 'done';
 };
 
 const taskSchema = new Schema<Task>(
@@ -22,6 +23,11 @@ const taskSchema = new Schema<Task>(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true
+        },
+        state: {
+            type: String,
+            enum: ['to do', 'in progress', 'done'],
+            default: 'to do'
         }
     },
     {

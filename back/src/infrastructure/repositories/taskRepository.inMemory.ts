@@ -19,7 +19,8 @@ const taskRepositoryInMemory: TaskRepositoryInterface & {
             title: task.title!,
             description: task.description ? task.description : null,
             id: randomUUID(),
-            owner: owner
+            owner: owner,
+            state: task.state ? task.state : 'to do'
         };
 
         this.tasks.push(newTask);
@@ -36,6 +37,15 @@ const taskRepositoryInMemory: TaskRepositoryInterface & {
     },
     getAllTasks: async function (userId) {
         return this.tasks.filter((task) => task.owner.id === userId);
+    },
+    updateTask: async function (data) {
+        const currentTask = this.tasks.find((task) => task.id === data.id);
+
+        const taskIndex = this.tasks.indexOf(currentTask!);
+
+        this.tasks[taskIndex] = { ...currentTask!, ...data };
+
+        return this.tasks[taskIndex];
     }
 };
 
