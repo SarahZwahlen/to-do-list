@@ -5,7 +5,7 @@ import createUserUseCase from './createUser.usecase';
 describe('Save new user', () => {
     beforeEach(() => userRepositoryInMemory.reset());
     test('Happy path', async () => {
-        const newUserData = userBuilder({});
+        const newUserData = userBuilder();
 
         const newUser = await createUserUseCase(
             newUserData,

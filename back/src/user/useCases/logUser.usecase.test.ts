@@ -6,7 +6,7 @@ describe('Log user', () => {
     beforeEach(() => userRepositoryInMemory.reset());
     test('Happy path', async () => {
         //given a user that exists in database
-        const userData = userBuilder({});
+        const userData = userBuilder();
         userRepositoryInMemory.givenExistingUser(userData);
 
         //given received data
@@ -33,7 +33,7 @@ describe('Log user', () => {
 
     test('Password mismatch', async () => {
         //Given a user that exists in database
-        const userData = userBuilder({});
+        const userData = userBuilder();
         userRepositoryInMemory.givenExistingUser(userData);
 
         //Given received data
