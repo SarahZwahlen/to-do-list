@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useDispatch } from 'react-redux'
 import { LOG_IN } from "../../store/reducer/userReducer"
 
-import '../Layout/main.scss'
+import '../../assets/style.scss'
 
 export function NewUser() {
   const [new_user, setNewUser] = useState({

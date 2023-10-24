@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { LOG_IN } from '../../store/reducer/userReducer'
 
-import '../Layout/main.scss'
+import '../../assets/style.scss'
 
 export function Login () {
   const [user_data, setUserData] = useState({

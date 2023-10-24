@@ -1,3 +1,5 @@
+// Global
+
 .p-error {
   color: red
 }
@@ -15,9 +17,25 @@
   background-color: rgb(36, 41, 60);
 }
 
+// Header
 header {
   height: 10vh;
+  .nav_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .logged_icons {
+      display: flex;
+      gap: 1.5rem;
+      i{
+        font-size: 1.3rem;
+      }
+    }
+  }
+
 }
+// Main
+
 .main {
   display: flex;
   flex-direction: column;
@@ -30,6 +48,8 @@ header {
     width: 100%;
   }
 }
+// Footer
+
 footer {
   height: 10vh;
   color: white;
@@ -45,6 +65,7 @@ footer {
     }
   }
 }
+// Login
 
 .login_container {
   display: flex;
@@ -70,4 +91,11 @@ footer {
     }
   }
 
+}
+// UserDashboard
+.settings_input_container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px;
 }

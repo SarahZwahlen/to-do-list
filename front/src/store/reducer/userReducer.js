@@ -8,7 +8,7 @@ const userSlice = createSlice({
       state.current_user = action.payload
     },
     LOG_OUT(state, action) {
-      state.current_user = null
+      return {}
     }
   }
 })
