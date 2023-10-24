@@ -1,5 +1,6 @@
 import './main.scss'
 import { Link } from 'react-router-dom'
+
 export function Main () {
   return (
     <section className="main">
