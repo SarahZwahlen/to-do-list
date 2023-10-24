@@ -33,6 +33,9 @@ const taskRepositoryInMemory: TaskRepositoryInterface & {
     deleteTask: async function (taskId) {
         const newTasks = this.tasks.filter((task) => task.id !== taskId);
         this.tasks = newTasks;
+    },
+    getAllTasks: async function (userId) {
+        return this.tasks.filter((task) => task.owner.id === userId);
     }
 };
 

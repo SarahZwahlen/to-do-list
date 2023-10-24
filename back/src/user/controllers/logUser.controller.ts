@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 import logUserUseCase from '../useCases/logUser.usecase';
-import userReponsitoryMongo from '../userRepository.mongo';
+import userRepositoryMongo from '../userRepository.mongo';
 
 const logUserController = async (req: Request, res: Response) => {
     const body = req.body;
 
     try {
-        const user = await logUserUseCase(body, userReponsitoryMongo);
+        const user = await logUserUseCase(body, userRepositoryMongo);
         req.session.user = user;
 
         res.status(200).json({

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import createTaskUseCase from '../useCases/createTask.usecase';
-import userReponsitoryMongo from '../../user/userRepository.mongo';
-import taskReponsitoryMongo from '../taskRepository.mongo';
+import userRepositoryMongo from '../../user/userRepository.mongo';
+import taskRepositoryMongo from '../taskRepository.mongo';
 
 const createTaskController = async (req: Request, res: Response) => {
     const userSession = req.session.user;
@@ -19,8 +19,8 @@ const createTaskController = async (req: Request, res: Response) => {
         const newTask = await createTaskUseCase(
             body,
             userSession.id,
-            taskReponsitoryMongo,
-            userReponsitoryMongo
+            taskRepositoryMongo,
+            userRepositoryMongo
         );
 
         return res.status(200).json({ message: 'Task created', data: newTask });

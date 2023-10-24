@@ -1,3 +1,4 @@
+import { Task } from '../infrastructure/models/task.model';
 import { User } from '../infrastructure/models/user.model';
 
 type UserRepositoryInterface = {

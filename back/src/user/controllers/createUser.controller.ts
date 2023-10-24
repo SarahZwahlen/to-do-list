@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import userReponsitoryMongo from '../userRepository.mongo';
+import userRepositoryMongo from '../userRepository.mongo';
 import { User } from '../../infrastructure/models/user.model';
 import createUserUseCase from '../useCases/createUser.usecase';
 
@@ -22,7 +22,7 @@ const createUserController = async (req: Request, res: Response) => {
             return res.status(400).json({ message: 'A password is missing' });
         }
 
-        await createUserUseCase(body, userReponsitoryMongo);
+        await createUserUseCase(body, userRepositoryMongo);
 
         return res.status(200).json({
             message: 'User is created'
