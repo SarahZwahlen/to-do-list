@@ -25,6 +25,14 @@ const taskRepositoryInMemory: TaskRepositoryInterface & {
         this.tasks.push(newTask);
 
         return newTask;
+    },
+    findById: async function (taskId) {
+        const task = this.tasks.find((task) => task.id === taskId);
+        return task ? task : null;
+    },
+    deleteTask: async function (taskId) {
+        const newTasks = this.tasks.filter((task) => task.id !== taskId);
+        this.tasks = newTasks;
     }
 };
 
