@@ -1,6 +1,9 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 
+import { useDispatch } from 'react-redux'
+import { LOG_IN } from "../../store/reducer/userReducer"
+
 import '../Layout/main.scss'
 
 export function NewUser() {
@@ -13,6 +16,7 @@ export function NewUser() {
   const [errors, setErrors] = useState('')
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleSubmit = () => {
     fetch('http://localhost:3000/user/create', {
@@ -25,6 +29,9 @@ export function NewUser() {
         if(res.message !== 'User is created') {
           setErrors(res.message)
         } else {
+          dispatch(LOG_IN({
+            email: new_user.email,
+          }))
           navigate('/')
         }
       })
