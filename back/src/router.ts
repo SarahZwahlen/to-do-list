@@ -6,6 +6,7 @@ import createTaskController from './task/createTask/createTask.controller';
 import deleteTaskController from './task/deleteTask/deleteTask.controller';
 import getAllUserTasksController from './task/getAllUserTasks/getAllUserTasks.controller';
 import getTaskController from './task/getTask/getTask.controller';
+import updateTaskController from './task/updateTask/updateTask.controller';
 
 const router = express.Router();
 
@@ -18,7 +19,9 @@ router.get('/task/unique/:taskId', getTaskController);
 router.post('/user/login', logUserController);
 router.post('/task/create', createTaskController);
 router.post('/user/create', createUserController);
+
 //PUT
+router.put('/task', updateTaskController);
 
 //DELETE
 router.delete('/task/delete', deleteTaskController);
