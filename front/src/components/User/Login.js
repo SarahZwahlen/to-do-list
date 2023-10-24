@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { json, Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 import '../Layout/main.scss'
 
@@ -9,14 +9,22 @@ export function Login () {
     password: ''
   })
 
+  const navigate = useNavigate()
   const handleSubmit = () => {
     fetch('http://localhost:3000/user/login', {
       method: 'POST',
-      body: JSON.stringify(user_data)
+      body: JSON.stringify(user_data),
+      headers: {
+        'content-type': 'application/json'
+      }
     })
     .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.log(error))
+    .then(res => {
+      if (res.data.isLogged) {
+        navigate('/')
+      }
+    })
+    .catch(error => console.log('ere'))
   }
 
   return (
