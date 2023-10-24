@@ -1,3 +1,25 @@
+::-webkit-input-placeholder {
+/* For Chrome/Edge/Safari */
+  color: white;
+  /* Red color for the placeholder text */
+}
+
+:-moz-placeholder {
+/* For Firefox */
+  color: white;
+}
+
+::-moz-placeholder {
+/* For older versions of Firefox */
+  color: white;
+}
+
+:-ms-input-placeholder {
+/* For Internet Explorer/Edge */
+  color: white;
+}
+
+
 // Global
 
 .p-error {
@@ -12,7 +34,7 @@
 .card {
   width: 80%;
   text-align: center;
-  padding: 1rem 0;
+  padding: 1rem 0.5rem;
   border-radius: 5px;
   background-color: rgb(36, 41, 60);
 }
@@ -20,6 +42,7 @@
 // Header
 header {
   height: 10vh;
+  margin-bottom: 2rem;
   .nav_container {
     display: flex;
     justify-content: space-between;
@@ -56,6 +79,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  margin-top: 1rem;
   .github {
     display: flex;
     align-items: center;
@@ -98,4 +122,46 @@ footer {
   flex-direction: column;
   gap: 8px;
   margin: 10px;
+}
+
+// NewTask 
+
+.new_todo {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  .todo_card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 40px;
+      .todo_input_container {
+        display: flex;
+        height: fit-content;
+        align-items: center;
+        gap: 10px;
+        width: 80%;
+
+        .checkbox {
+          border: 1px solid gray;
+          width: 20px;
+          height: 20px;
+          border-radius: 100%;
+        }
+        input {
+          background-color: inherit;
+          outline: none;
+          border: none;
+          width: 100%;
+          min-height: 40px;
+          padding-left: 10px;
+          color: white;
+          
+          
+        }
+      }
+
+  }
 }
