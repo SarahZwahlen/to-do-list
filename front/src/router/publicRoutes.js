@@ -10,9 +10,9 @@ const publicRoutes = createBrowserRouter([
     path: "/",
     element: <Layout/>,
     children: [
-      { path: 'login', component: <Login/>},
-      { path: 'new_user', component: <NewUser/>},
-      { path: "*", component: <NotFound/>}
+      { path: 'login', element: <Login/>},
+      { path: 'new_user', element: <NewUser/>},
+      { path: "*", element: <NotFound/>}
     ]
   }
 ])
