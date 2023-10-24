@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 
 import '../Layout/main.scss'
@@ -11,6 +11,9 @@ export function NewUser() {
     surname: ''
   })
   const [errors, setErrors] = useState('')
+
+  const navigate = useNavigate()
+
   const handleSubmit = () => {
     fetch('http://localhost:3000/user/create', {
       method: 'POST',
@@ -21,6 +24,8 @@ export function NewUser() {
       .then(res => {
         if(res.message !== 'User is created') {
           setErrors(res.message)
+        } else {
+          navigate('/')
         }
       })
       .catch(error => console.log(error))

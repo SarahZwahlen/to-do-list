@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 
+import { useDispatch } from 'react-redux'
+import { LOG_IN } from '../../store/reducer/userReducer'
+
 import '../Layout/main.scss'
 
 export function Login () {
@@ -8,7 +11,7 @@ export function Login () {
     email: '',
     password: ''
   })
-
+  const dispatch = useDispatch() 
   const navigate = useNavigate()
   const handleSubmit = () => {
     fetch('http://localhost:3000/user/login', {
@@ -21,6 +24,8 @@ export function Login () {
     .then(response => response.json())
     .then(res => {
       if (res.data.isLogged) {
+        console.log(res.data.user)
+        dispatch(LOG_IN(res.data.user))
         navigate('/')
       }
     })
