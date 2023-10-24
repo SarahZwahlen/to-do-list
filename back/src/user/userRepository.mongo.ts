@@ -15,8 +15,8 @@ const userReponsitoryMongo: UserRepositoryInterface = {
     findByEmail: async (email) => {
         return await UserModel.findOne({ email });
     },
-    fingById: async (userId) => {
-        return await UserModel.findOne({ id: userId });
+    findById: async (userId) => {
+        return await UserModel.findOne({ _id: userId });
     },
     logUser: async (data) => {
         const user = await UserModel.findOne({ email: data.email });

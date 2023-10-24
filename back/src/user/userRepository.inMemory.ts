@@ -25,7 +25,7 @@ const userRepositoryInMemory: UserRepositoryInterface & {
         const user = this.users.find((user) => (user.email = email));
         return user ? user : null;
     },
-    fingById: async function (userId) {
+    findById: async function (userId) {
         const user = this.users.find((user) => user.id === userId);
         return user ? user : null;
     },
