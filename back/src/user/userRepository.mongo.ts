@@ -2,7 +2,7 @@ import UserModel from '../infrastructure/models/user.model';
 import { UserRepositoryInterface } from './userRepository.interface';
 import bcrypt from 'bcrypt';
 
-const userReponsitoryMongo: UserRepositoryInterface = {
+const userRepositoryMongo: UserRepositoryInterface = {
     createUser: async (data) => {
         const user = new UserModel({
             ...data,
@@ -29,4 +29,4 @@ const userReponsitoryMongo: UserRepositoryInterface = {
     }
 };
 
-export default userReponsitoryMongo;
+export default userRepositoryMongo;

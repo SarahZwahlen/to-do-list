@@ -1,7 +1,7 @@
 import TaskModel from '../infrastructure/models/task.model';
 import { TaskRepositoryInterface } from './taskRepository.interface';
 
-const taskReponsitoryMongo: TaskRepositoryInterface = {
+const taskRepositoryMongo: TaskRepositoryInterface = {
     createTask: async (data, owner) => {
         const task = new TaskModel({ ...data, owner });
 
@@ -13,7 +13,10 @@ const taskReponsitoryMongo: TaskRepositoryInterface = {
     },
     deleteTask: async (taskId) => {
         await TaskModel.deleteOne({ _id: taskId });
+    },
+    getAllTasks: async (userId) => {
+        return await TaskModel.find({ owner: userId });
     }
 };
 
-export default taskReponsitoryMongo;
+export default taskRepositoryMongo;
