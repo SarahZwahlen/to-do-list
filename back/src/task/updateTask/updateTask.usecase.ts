@@ -1,6 +1,7 @@
 import { Task } from '../../infrastructure/models/task.model';
 import { TaskRepositoryInterface } from '../../infrastructure/persistence/taskRepository.interface';
 import { UserRepositoryInterface } from '../../infrastructure/persistence/userRepository.interface';
+import checkUserExistence from '../../tooling/validators/checkUserExistence';
 
 const updateTaskUseCase = async (
     userId: string,
@@ -8,10 +9,7 @@ const updateTaskUseCase = async (
     userRepo: UserRepositoryInterface,
     taskRepo: TaskRepositoryInterface
 ) => {
-    const user = await userRepo.findById(userId);
-    if (!user) {
-        throw new Error('This user does not exists in database');
-    }
+    await checkUserExistence(userId, userRepo);
 
     const task = await taskRepo.findById(data.id);
     if (!task) {

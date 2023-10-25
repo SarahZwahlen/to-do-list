@@ -63,10 +63,6 @@ describe('User wants to update a task', () => {
             title: 'New title'
         };
 
-        const expectedTask = {
-            ...task,
-            ...newTaskData
-        };
         expect(
             async () =>
                 await updateTaskUseCase(

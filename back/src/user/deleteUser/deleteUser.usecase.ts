@@ -5,11 +5,9 @@ const deleteUserUseCase = async (
     userId: string,
     userRepo: UserRepositoryInterface
 ) => {
-    checkUserExistence(userId, userRepo);
+    await checkUserExistence(userId, userRepo);
 
-    //Vérifier si le user exists en bdd
-    //le supprimer
-    //Penser à supprimer TOUTES les tâches reliées à ce user en même temps !
+    await userRepo.deleteUser(userId);
 };
 
 export default deleteUserUseCase;
