@@ -1,6 +1,7 @@
 import { Task } from '../../infrastructure/models/task.model';
 import { UserRepositoryInterface } from '../../infrastructure/persistence/userRepository.interface';
 import { TaskRepositoryInterface } from '../../infrastructure/persistence/taskRepository.interface';
+import checkUserExistence from '../../tooling/validators/checkUserExistence';
 
 const createTaskUseCase = async (
     data: Partial<Pick<Task, 'title' | 'description'>>,
@@ -8,11 +9,7 @@ const createTaskUseCase = async (
     taskRepo: TaskRepositoryInterface,
     userRepo: UserRepositoryInterface
 ) => {
-    const user = await userRepo.findById(userId);
-
-    if (!user) {
-        throw new Error('User does not exists in database');
-    }
+    const user = await checkUserExistence(userId, userRepo);
 
     return await taskRepo.createTask(data, user);
 };

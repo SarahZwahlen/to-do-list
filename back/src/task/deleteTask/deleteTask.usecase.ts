@@ -1,5 +1,6 @@
 import { UserRepositoryInterface } from '../../infrastructure/persistence/userRepository.interface';
 import { TaskRepositoryInterface } from '../../infrastructure/persistence/taskRepository.interface';
+import checkUserExistence from '../../tooling/validators/checkUserExistence';
 
 const deleteTaskUseCase = async (
     taskId: string,
@@ -7,11 +8,7 @@ const deleteTaskUseCase = async (
     taskRepo: TaskRepositoryInterface,
     userRepo: UserRepositoryInterface
 ) => {
-    const user = await userRepo.findById(userId);
-
-    if (!user) {
-        throw new Error('User does not exists in database.');
-    }
+    const user = await checkUserExistence(userId, userRepo);
 
     const task = await taskRepo.findById(taskId);
     if (!task) {

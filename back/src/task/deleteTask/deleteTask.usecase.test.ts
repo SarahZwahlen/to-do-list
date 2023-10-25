@@ -42,7 +42,7 @@ describe('User wants to delete a task', () => {
                     taskRepositoryInMemory,
                     userRepositoryInMemory
                 )
-        ).rejects.toThrow('User does not exists in database.');
+        ).rejects.toThrow('This user does not exists in database');
     });
 
     test('Task does not exists in database', async () => {

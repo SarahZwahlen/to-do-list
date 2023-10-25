@@ -7,6 +7,7 @@ import deleteTaskController from './task/deleteTask/deleteTask.controller';
 import getAllUserTasksController from './task/getAllUserTasks/getAllUserTasks.controller';
 import getTaskController from './task/getTask/getTask.controller';
 import updateTaskController from './task/updateTask/updateTask.controller';
+import deleteUserController from './user/deleteUser/deleteUser.controller';
 
 const router = express.Router();
 
@@ -25,5 +26,6 @@ router.put('/task', updateTaskController);
 
 //DELETE
 router.delete('/task/delete', deleteTaskController);
+router.delete('/user', deleteUserController);
 
 export default router;
