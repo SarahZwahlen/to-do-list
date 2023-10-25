@@ -9,25 +9,27 @@ import getTaskController from './task/getTask/getTask.controller';
 import updateTaskController from './task/updateTask/updateTask.controller';
 import deleteUserController from './user/deleteUser/deleteUser.controller';
 import isUserLoggedController from './user/isLogged/isUserLogged.controller';
+import updateUserController from './user/updateUser/updateUser.controller';
 
 const router = express.Router();
 
 //GET
 router.get('/user/logout', logOutController);
+router.get('/user/is-logged', isUserLoggedController);
 router.get('/task/all-user-tasks', getAllUserTasksController);
 router.get('/task/unique/:taskId', getTaskController);
-router.get('/user/is-logged', isUserLoggedController);
 
 //POST
 router.post('/user/login', logUserController);
-router.post('/task/create', createTaskController);
 router.post('/user/create', createUserController);
+router.post('/task/create', createTaskController);
 
 //PUT
+router.put('/user', updateUserController);
 router.put('/task', updateTaskController);
 
 //DELETE
-router.delete('/task/delete', deleteTaskController);
 router.delete('/user', deleteUserController);
+router.delete('/task/delete', deleteTaskController);
 
 export default router;

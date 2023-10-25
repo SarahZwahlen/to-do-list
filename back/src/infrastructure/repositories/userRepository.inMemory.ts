@@ -40,6 +40,13 @@ const userRepositoryInMemory: UserRepositoryInterface & {
             (task) => task.owner.id !== userId
         );
         this.users = this.users.filter((user) => user.id !== userId);
+    },
+    updateUser: async function (userData) {
+        const currentUser = this.users.find((user) => user.id === userData.id);
+        const userIndex = this.users.indexOf(currentUser!);
+
+        this.users[userIndex] = { ...currentUser!, ...userData };
+        return this.users[userIndex];
     }
 };
 
