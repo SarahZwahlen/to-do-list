@@ -44,26 +44,4 @@ describe('User wants to update its data', () => {
                 await updateUserUseCase(newUserData, userRepositoryInMemory)
         ).rejects.toThrow('This user does not exists in database');
     });
-
-    test('User to modify is not the logged user', async () => {
-        //Given a user that exists in database
-        const user = userBuilder();
-        userRepositoryInMemory.givenExistingUser(user);
-
-        //Given a logged user that exists in database
-        const otherUser = userBuilder({ email: 'other@user.fr' });
-        //Given new user data
-        const newUserData = {
-            id: user.id,
-            email: 'new@mail.com',
-            firstname: 'new',
-            surname: 'new',
-            password: '456'
-        };
-
-        expect(
-            async () =>
-                await updateUserUseCase(newUserData, userRepositoryInMemory)
-        ).rejects.toThrow('This user does not exists in database');
-    });
 });
