@@ -25,7 +25,6 @@ export function Login () {
     })
     .then(response => response.json())
     .then(res => {
-      console.log(res)
       if (res.data.isLogged) {
         dispatch(LOG_IN(res.data.user))
         navigate('/')
@@ -50,8 +49,8 @@ export function Login () {
             <input type='password' placeholder='your secret password' value={user_data.password} onChange={(e) => setUserData({...user_data, password: e.target.value})}></input>
           </div>
           { error.length>0 && <p className='p-error'>{error}</p>}
-          <div className='button'>
-            <button onClick={handleSubmit}>Log in</button>
+          <div className='button_container'>
+            <button className='button-89' onClick={handleSubmit}>Log in</button>
           </div>
         </fieldset>
         <p>Don't have an account ? <Link to='/new_user' className='link'>Sign in</Link></p>

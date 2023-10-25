@@ -49,7 +49,7 @@ export function UserDashboard() {
   }
   
   return (
-    <div>
+    <div className='user_dashboard_container card'>
       <h2>Change your account details</h2>
       <section>
         <div className='settings_input_container'>
@@ -68,10 +68,13 @@ export function UserDashboard() {
           <label>Password : </label>
           <input type="password" value={editUser.password} onChange={(e) => setEditUser({...editUser, password: e.target.value})}></input>
         </div>
-        <button onClick={handleEdit}>Submit</button>
+        <button className='button-89' onClick={handleEdit}>Submit</button>
       </section>
-      <p className='p-error' onClick={handleDelete}><i class="fa-solid fa-trash"></i> Delete my account</p>
-      <p onClick={() => navigate('/')}>Go back home</p>
+      <div className='settings'>
+        <p onClick={() => navigate('/')}>Go back home</p>
+        <p className='p-error' onClick={handleDelete}><i className="fa-solid fa-trash"></i> Delete my account</p>
+      </div>
+      
     </div>
   )
 }

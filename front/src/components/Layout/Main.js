@@ -31,8 +31,7 @@ export  function Main () {
         }
       })
       .catch(err => console.error(err))
-    } 
-    
+    }
   }, [store, dispatch])
   const isLogged = store.hasOwnProperty('current_user') || isLoggedIn
   return (
