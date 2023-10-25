@@ -19,12 +19,12 @@ export function Login () {
       body: JSON.stringify(user_data),
       headers: {
         'content-type': 'application/json'
-      }
+      },
+      credentials: 'include',
     })
     .then(response => response.json())
     .then(res => {
       if (res.data.isLogged) {
-        console.log(res.data.user)
         dispatch(LOG_IN(res.data.user))
         navigate('/')
       }

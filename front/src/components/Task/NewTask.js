@@ -1,52 +1,65 @@
 
 import { useState } from "react"
 
+import { EditTask } from '../Task/EditTask'
+
 export function NewTask() {
   const [newTodo, setNewTodo] = useState({
-    description: "",
-    completed: false
+    title: "",
   })
+  const [editTodo, setEditTodo] = useState({})
   const [todoList, setTodoList] = useState([])
   const handleNewTodo = (e) => {
-    if(e.key === 'Enter' && newTodo.description.length>0) {
-      console.log("here")
+    if(e.key === 'Enter' && newTodo.title.length>0) {
       fetch('http://localhost:3000/task/create', {
         method: 'POST',
         body: JSON.stringify(newTodo),
-        headers: {'content-type': 'application/json'}
+        credentials: 'include',
+        headers: {'Content-type': 'application/json'},
       })
         .then(res => res.json())
-        .then(data => console.log(data))
-      // setTodoList([ newTodo, ...todoList])
-      // setNewTodo({
-      //   description: '',
-      //   completed: false
-      // })
-    }
-    
+        .then(data => {
+          setTodoList([data.data, ...todoList])
+          setNewTodo({title: ''});
+        })
+      }
+  }
+
+  const handleDelete = (id) => {
+    fetch('http://localhost:3000/task/delete', {
+      method: 'DELETE',
+      body: JSON.stringify({taskId: id}),
+      credentials: 'include',
+      headers: {'content-type': 'application/json'}
+    })
+      .then(res => res.json())
+      .then(data => {
+        if(data.message === 'Task has been deleted') {
+          setTodoList(todoList.filter(todo => todo.id !== id))
+        }
+      })
+      .catch(error => console.log(error))
   }
   return (
     <section className="new_todo">
       <div className="card todo_card">
         <div className="todo_input_container">
           <div className="checkbox"></div>
-          <input placeholder="Create a new todo.." value={newTodo.description} onChange={(e) => setNewTodo({...newTodo, description: e.target.value})} onKeyDown={handleNewTodo}></input>
+          <input type='text' placeholder="Create a new todo.." value={newTodo.title} onChange={(e) => setNewTodo({...newTodo, title: e.target.value})} onKeyDown={handleNewTodo}></input>
         </div>
         <div>
           <i className="fa-solid fa-paper-plane"></i>
         </div>
       </div>
       {todoList.map(item => 
-        <div className="card todo_card">
-          <div className="todo_input_container">
-            <div className="checkbox"></div>
-            <p>{item.description}</p>
-          </div>
+        <div className="card todo_card" key={item.id}>
+          <EditTask model={item}/>
           <div>
-            <i className="fa-solid fa-xmark"></i>
+            <i className="fa-solid fa-xmark" onClick={() => handleDelete(item.id)}></i>
           </div>
         </div>
       )}
+      <p>{todoList.length} item</p>
     </section>
   )
 }
