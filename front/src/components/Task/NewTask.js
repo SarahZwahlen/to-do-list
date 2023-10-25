@@ -47,8 +47,8 @@ export function NewTask() {
           <div className="checkbox"></div>
           <input type='text' placeholder="Create a new todo.." value={newTodo.title} onChange={(e) => setNewTodo({...newTodo, title: e.target.value})} onKeyDown={handleNewTodo}></input>
         </div>
-        <div>
-          <i className="fa-solid fa-paper-plane"></i>
+        <div className="input_icon">
+          <i className="fa-solid fa-plus"></i>
         </div>
       </div>
       {todoList.map(item => 

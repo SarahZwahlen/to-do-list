@@ -51,7 +51,7 @@ export function NewUser() {
 
   return(
     <section className="login_container">
-      <div className="card">
+      <div className="card new_user">
         <h2>Sign Up</h2>
         <fieldset>
           <div className="login">
@@ -72,7 +72,7 @@ export function NewUser() {
           </div>
           <p className="p-error">{errors}</p>
           <div>
-            <button onClick={handleSubmit}>Sign in</button>
+            <button className="button-56" onClick={handleSubmit}>Sign in</button>
           </div>
         </fieldset>
         <p>Already have an account? <Link to="/login" className="link">Log in</Link></p>
