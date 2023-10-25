@@ -1,5 +1,5 @@
 import TaskModel from '../models/task.model';
-import UserModel from '../models/user.model';
+import UserModel, { User } from '../models/user.model';
 import { UserRepositoryInterface } from '../persistence/userRepository.interface';
 import bcrypt from 'bcrypt';
 
@@ -31,6 +31,21 @@ const userRepositoryMongo: UserRepositoryInterface = {
     deleteUser: async (userId) => {
         await TaskModel.deleteMany({ owner: userId });
         await UserModel.deleteOne({ _id: userId });
+    },
+    updateUser: async (data) => {
+        const updateData: Partial<User> = { ...data };
+
+        if (data.password) {
+            updateData.password = await bcrypt.hash(data.password, 10);
+        }
+        delete updateData['id'];
+        return await UserModel.findOneAndUpdate(
+            { _id: data.id },
+            {
+                ...updateData
+            },
+            { new: true }
+        );
     }
 };
 
