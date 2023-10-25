@@ -8,6 +8,7 @@ import getAllUserTasksController from './task/getAllUserTasks/getAllUserTasks.co
 import getTaskController from './task/getTask/getTask.controller';
 import updateTaskController from './task/updateTask/updateTask.controller';
 import deleteUserController from './user/deleteUser/deleteUser.controller';
+import isUserLoggedController from './user/isLogged/isUserLogged.controller';
 
 const router = express.Router();
 
@@ -15,6 +16,7 @@ const router = express.Router();
 router.get('/user/logout', logOutController);
 router.get('/task/all-user-tasks', getAllUserTasksController);
 router.get('/task/unique/:taskId', getTaskController);
+router.get('/user/is-logged', isUserLoggedController);
 
 //POST
 router.post('/user/login', logUserController);
