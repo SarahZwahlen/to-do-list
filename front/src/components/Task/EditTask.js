@@ -26,7 +26,6 @@ export function EditTask({model}) {
       isCompleted: editTodo.isCompleted? false : true
     })
   }
-  console.log(editTodo)
   return(
       <div className="todo_input_container">
         <div className="checkbox" onClick={handleComplete}></div>

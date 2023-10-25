@@ -10,8 +10,19 @@ export function Header () {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const handleLogOut = () => {
-    dispatch(LOG_OUT())
-    navigate('/')
+    fetch('http://localhost:3000/user/logout', {
+      credentials: 'include',
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.message === 'User is deconnected') {
+        console.log(data.message)
+        dispatch(LOG_OUT())
+        navigate('/')
+      } 
+    })
+    .catch(err => console.error(err))
+
   }
   return(
     <header>

@@ -1,27 +1,53 @@
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
 import '../../assets/style.scss'
+import { LOG_OUT } from '../../store/reducer/userReducer'
+import { LOG_IN } from '../../store/reducer/userReducer'
 
 export function UserDashboard() {
   const current_user = useSelector(state => state.user.current_user)
   const [editUser, setEditUser] = useState(current_user)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleEdit = ( ) => {
-    fetch('http://localhost:3000/user/edit', {
-      method: 'PATCH',
+    fetch('http://localhost:3000/user', {
+      method: 'PUT',
       body: JSON.stringify(editUser),
-      headers: { 'content-type': 'application/json'}
+      headers: { 'content-type': 'application/json'},
+      credentials: 'include',
     })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => {
+        if(data.message !== 'User update failed') {
+          const {password, ...editedUser} = editUser
+          setEditUser(data.data)
+          dispatch(LOG_IN(editedUser))
+        }
+      })
       .catch(error => console.log(error))
   }
 
+  const handleDelete = ( ) => {
+    fetch('http://localhost:3000/user', {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json'},
+      credentials: 'include',
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.message === 'User has been deleted') {
+        dispatch(LOG_OUT())
+        navigate('/')
+      }
+    })
+    .catch(error => console.log(error))
+  }
+  
   return (
     <div>
       <h2>Change your account details</h2>
@@ -44,6 +70,7 @@ export function UserDashboard() {
         </div>
         <button onClick={handleEdit}>Submit</button>
       </section>
+      <p className='p-error' onClick={handleDelete}><i class="fa-solid fa-trash"></i> Delete my account</p>
       <p onClick={() => navigate('/')}>Go back home</p>
     </div>
   )

@@ -11,6 +11,7 @@ export function Login () {
     email: '',
     password: ''
   })
+  const [error, setErrors] = useState("")
   const dispatch = useDispatch() 
   const navigate = useNavigate()
   const handleSubmit = () => {
@@ -20,13 +21,16 @@ export function Login () {
       headers: {
         'content-type': 'application/json'
       },
-      credentials: 'include',
+      credentials: 'include'
     })
     .then(response => response.json())
     .then(res => {
+      console.log(res)
       if (res.data.isLogged) {
         dispatch(LOG_IN(res.data.user))
         navigate('/')
+      } else {
+        setErrors('Wrong email or password')
       }
     })
     .catch(error => console.log('ere'))
@@ -45,6 +49,7 @@ export function Login () {
             <label>Password</label>
             <input type='password' placeholder='your secret password' value={user_data.password} onChange={(e) => setUserData({...user_data, password: e.target.value})}></input>
           </div>
+          { error.length>0 && <p className='p-error'>{error}</p>}
           <div className='button'>
             <button onClick={handleSubmit}>Log in</button>
           </div>
