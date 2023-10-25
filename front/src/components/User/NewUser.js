@@ -22,16 +22,27 @@ export function NewUser() {
     fetch('http://localhost:3000/user/create', {
       method: 'POST',
       body: JSON.stringify(new_user),
-      headers: { 'content-type': 'application/json'}
+      headers: { 'content-type': 'application/json'},
     })
-      .then(response => response.json())
-      .then(res => {
-        if(res.message !== 'User is created') {
-          setErrors(res.message)
+      .then(response => {
+        if( response.status === 204 ) {
+          return null
+        } else if (response.status === 400) {
+          return response.json()
         } else {
-          dispatch(LOG_IN({
-            email: new_user.email,
-          }))
+          throw new Error('Bad Request')
+        }
+      })
+      .then(data => {
+        if (data) {
+          if(data.message === 'An error occured') {
+            setErrors("This email is already in use")
+          } else {
+            setErrors(data.message)
+          }
+        } else {
+          const { password , ...current_user } = new_user 
+          dispatch(LOG_IN(current_user))
           navigate('/')
         }
       })
