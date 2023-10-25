@@ -1,3 +1,4 @@
+import TaskModel from '../models/task.model';
 import UserModel from '../models/user.model';
 import { UserRepositoryInterface } from '../persistence/userRepository.interface';
 import bcrypt from 'bcrypt';
@@ -26,6 +27,10 @@ const userRepositoryMongo: UserRepositoryInterface = {
         );
 
         return isPasswordMatching ? user : null;
+    },
+    deleteUser: async (userId) => {
+        await TaskModel.deleteMany({ owner: userId });
+        await UserModel.deleteOne({ _id: userId });
     }
 };
 

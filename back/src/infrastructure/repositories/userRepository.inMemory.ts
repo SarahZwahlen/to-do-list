@@ -1,5 +1,6 @@
 import { User } from '../models/user.model';
 import { UserRepositoryInterface } from '../persistence/userRepository.interface';
+import taskRepositoryInMemory from './taskRepository.inMemory';
 
 const userRepositoryInMemory: UserRepositoryInterface & {
     users: User[];
@@ -33,6 +34,12 @@ const userRepositoryInMemory: UserRepositoryInterface & {
         const user = await this.findByEmail(data.email);
 
         return data.password === user?.password ? user : null;
+    },
+    deleteUser: async function (userId) {
+        taskRepositoryInMemory.tasks = taskRepositoryInMemory.tasks.filter(
+            (task) => task.owner.id !== userId
+        );
+        this.users = this.users.filter((user) => user.id !== userId);
     }
 };
 

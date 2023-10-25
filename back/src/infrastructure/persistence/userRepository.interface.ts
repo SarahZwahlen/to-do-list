@@ -5,6 +5,7 @@ type UserRepositoryInterface = {
     logUser: (data: Pick<User, 'email' | 'password'>) => Promise<User | null>;
     findByEmail: (email: string) => Promise<User | null>;
     findById: (userId: string) => Promise<User | null>;
+    deleteUser: (userId: string) => Promise<void>;
 };
 
 export type { UserRepositoryInterface };
