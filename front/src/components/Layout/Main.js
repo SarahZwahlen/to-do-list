@@ -19,12 +19,9 @@ export function Main () {
           </div>
         </section>}
       { (location.pathname ==='/' && isLogged) && 
-        <section>
+        <section className='todo_home'>
           <h1>Start your To do</h1>
-          <div className='app_container'>
-            <Link to='new_task' className='link card'>Create a new To do</Link>
-
-          </div>
+          <Link to='new_task' className='link card card_home'>Create a new To do</Link>
         </section>
       }
     </>

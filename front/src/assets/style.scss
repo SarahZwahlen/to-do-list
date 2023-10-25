@@ -21,6 +21,47 @@
 
 
 // Global
+input[type="checkbox"] {
+  display: none;
+}
+/* Create the custom checkbox */
+.custom-checkbox {
+  width: 25px;
+  height: 25px;
+  border: 2px solid rgb(67, 70, 105);
+  background-color: inherit;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  vertical-align: center;
+  transition: background 0.3s;
+}
+.checkbox {
+  width: 25px;
+  height: 25px;
+  border: 2px solid rgb(67, 70, 105);
+  background-color: inherit;
+  border-radius: 50%;
+}
+/* Style for the checked checkbox */
+input[type="checkbox"]:checked+label.custom-checkbox {
+  background: linear-gradient(90deg, rgb(115, 165, 239), rgb(149, 126,237));
+  /* Background color when checked */
+  border: none;
+  /* Border color when checked */
+}
+input[type="checkbox"]:checked+label.custom-checkbox::after {
+  content: '\2713';
+  font-family: 'Font Awesome 5 Free';
+  font-size: 16px;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate((-50%, -50%));
+}
 
 .p-error {
   color: red
@@ -69,6 +110,14 @@ header {
     justify-content: space-evenly;
     gap: 10px;
     width: 100%;
+  }
+}
+.todo_home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .card_home {
+    width: 50%;
   }
 }
 // Footer
@@ -126,6 +175,7 @@ footer {
 
 // NewTask 
 
+
 .new_todo {
   display: flex;
   flex-direction: column;
@@ -143,14 +193,7 @@ footer {
         align-items: center;
         gap: 10px;
         width: 80%;
-
-        .checkbox {
-          border: 1px solid gray;
-          width: 20px;
-          height: 20px;
-          border-radius: 100%;
-        }
-        input {
+        input[type="text"] {
           background-color: inherit;
           outline: none;
           border: none;
@@ -158,7 +201,6 @@ footer {
           min-height: 40px;
           padding-left: 10px;
           color: white;
-          
           
         }
       }
