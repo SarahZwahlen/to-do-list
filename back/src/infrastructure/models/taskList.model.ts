@@ -7,7 +7,7 @@ type TaskList = {
     title: string;
     description?: string | null;
     owner: User;
-    tasks: Task[] | Task;
+    tasks?: Task[] | Task;
 };
 
 const taskListSchema = new Schema<TaskList>(
@@ -23,7 +23,12 @@ const taskListSchema = new Schema<TaskList>(
         tasks: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Task',
-            default: []
+            required: false
+        },
+        owner: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
         }
     },
     {
