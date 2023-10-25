@@ -8,7 +8,7 @@ const taskBuilder = (taskData: Partial<Task> = {}) => {
         owner: userBuilder(),
         title: 'Nouvelle tâche',
         description: 'Voici une description',
-        state: 'to do',
+        isCompleted: false,
         ...taskData
     };
 

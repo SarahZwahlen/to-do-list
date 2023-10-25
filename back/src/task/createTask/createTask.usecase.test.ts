@@ -45,6 +45,6 @@ describe('User wants to create a new task', () => {
                 taskRepositoryInMemory,
                 userRepositoryInMemory
             );
-        }).rejects.toThrow('User does not exists in database');
+        }).rejects.toThrow('This user does not exists in database');
     });
 });

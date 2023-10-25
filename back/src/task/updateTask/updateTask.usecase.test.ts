@@ -20,12 +20,12 @@ describe('User wants to update a task', () => {
 
         //Given new task data for updapte
         const newTaskData: Partial<
-            Pick<Task, 'description' | 'title' | 'state'>
+            Pick<Task, 'description' | 'title' | 'isCompleted'>
         > &
             Pick<Task, 'id'> = {
             id: task.id,
             description: 'Updated description',
-            state: 'in progress',
+            isCompleted: true,
             title: 'New title'
         };
 
@@ -54,12 +54,12 @@ describe('User wants to update a task', () => {
 
         //Given new task data for updapte
         const newTaskData: Partial<
-            Pick<Task, 'description' | 'title' | 'state'>
+            Pick<Task, 'description' | 'title' | 'isCompleted'>
         > &
             Pick<Task, 'id'> = {
             id: task.id,
             description: 'Updated description',
-            state: 'in progress',
+            isCompleted: false,
             title: 'New title'
         };
 
@@ -88,12 +88,12 @@ describe('User wants to update a task', () => {
 
         //Given new task data for updapte
         const newTaskData: Partial<
-            Pick<Task, 'description' | 'title' | 'state'>
+            Pick<Task, 'description' | 'title' | 'isCompleted'>
         > &
             Pick<Task, 'id'> = {
             id: task.id,
             description: 'Updated description',
-            state: 'in progress',
+            isCompleted: false,
             title: 'New title'
         };
 
@@ -127,12 +127,12 @@ describe('User wants to update a task', () => {
 
         //Given new task data for updapte
         const newTaskData: Partial<
-            Pick<Task, 'description' | 'title' | 'state'>
+            Pick<Task, 'description' | 'title' | 'isCompleted'>
         > &
             Pick<Task, 'id'> = {
             id: task.id,
             description: 'Updated description',
-            state: 'in progress',
+            isCompleted: true,
             title: 'New title'
         };
 

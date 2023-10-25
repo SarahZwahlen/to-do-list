@@ -6,7 +6,7 @@ import taskRepositoryMongo from '../../infrastructure/repositories/taskRepositor
 
 const updateTaskController = async (req: Request, res: Response) => {
     const userSession = req.session.user;
-    const body: Partial<Pick<Task, 'description' | 'title' | 'state'>> &
+    const body: Partial<Pick<Task, 'description' | 'title' | 'isCompleted'>> &
         Pick<Task, 'id'> = req.body;
 
     if (!userSession) {

@@ -20,7 +20,7 @@ const taskRepositoryInMemory: TaskRepositoryInterface & {
             description: task.description ? task.description : null,
             id: randomUUID(),
             owner: owner,
-            state: task.state ? task.state : 'to do'
+            isCompleted: task.isCompleted ? task.isCompleted : false
         };
 
         this.tasks.push(newTask);
