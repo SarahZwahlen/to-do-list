@@ -6,7 +6,7 @@ type Task = {
     title: string;
     description?: string | null;
     owner: User;
-    state: 'to do' | 'in progress' | 'done';
+    isCompleted: boolean;
 };
 
 const taskSchema = new Schema<Task>(
@@ -24,10 +24,9 @@ const taskSchema = new Schema<Task>(
             ref: 'User',
             required: true
         },
-        state: {
-            type: String,
-            enum: ['to do', 'in progress', 'done'],
-            default: 'to do'
+        isCompleted: {
+            type: Boolean,
+            default: false
         }
     },
     {
