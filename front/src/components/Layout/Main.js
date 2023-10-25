@@ -14,7 +14,6 @@ export  function Main () {
   const [isLoggedIn, SetLoggedIn] = useState(false)
   
   const dispatch = useDispatch()
-  
   const location = useLocation()
 
   useEffect(() => {
@@ -33,7 +32,9 @@ export  function Main () {
       .catch(err => console.error(err))
     }
   }, [store, dispatch])
+
   const isLogged = store.hasOwnProperty('current_user') || isLoggedIn
+  
   return (
     <>
       { (location.pathname === '/' && !isLogged) &&   
