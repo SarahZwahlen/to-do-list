@@ -41,7 +41,7 @@ export function NewTodoList () {
 
   return ( 
     <section className="new_list_container">
-      { !isCreated && <div className="card">
+      { !isCreated && <div className="card creation">
         <h1>Task title</h1>
         <input type='text' value={task_list.title} onChange={(e) => setTaskList({...task_list, title: e.target.value})}></input>
         <button className="button-89" onClick={handleSubmit}>Create</button>
