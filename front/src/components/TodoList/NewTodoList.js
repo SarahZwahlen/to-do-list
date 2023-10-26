@@ -1,12 +1,16 @@
 import { useState } from "react"
 import { NewTask } from "../Task/NewTask"
 
+import { useNavigate } from "react-router-dom"
 
 export function NewTodoList () {
   const [task_list, setTaskList] = useState({
     title: ''
   })
   const [isCreated, setIsCreated] = useState(false)
+
+  const navigate = useNavigate()
+
   const handleSubmit = () => {
     fetch('http://localhost:3000/task-list/create', {
       method: 'POST',
@@ -24,14 +28,14 @@ export function NewTodoList () {
     .catch(err => console.log(err))
   }
   const handleDelete = () => {
-    fetch('https://localhost:3000/task-list', {
+    fetch('http://localhost:3000/task-list', {
       method: 'DELETE',
       credentials: 'include',
-      body: JSON.stringify(task_list.id),
+      body: JSON.stringify({taskListId: task_list.id}),
       headers: { 'content-type': 'application/json'}
     })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => navigate('/'))
       .catch(err => console.log(err))
   }
 
