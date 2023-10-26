@@ -9,6 +9,7 @@ export function NewTask() {
   })
   const [editTodo, setEditTodo] = useState({})
   const [todoList, setTodoList] = useState([])
+
   const handleNewTodo = (e) => {
     if(e.key === 'Enter' && newTodo.title.length>0) {
       fetch('http://localhost:3000/task/create', {
@@ -44,21 +45,26 @@ export function NewTask() {
     <section className="new_todo">
       <div className="card todo_card">
         <div className="todo_input_container">
-          <div className="checkbox"></div>
+          <div className="checkbox_container">
+            <div className="checkbox"></div>
+          </div>
           <input type='text' placeholder="Create a new todo.." value={newTodo.title} onChange={(e) => setNewTodo({...newTodo, title: e.target.value})} onKeyDown={handleNewTodo}></input>
         </div>
         <div className="input_icon">
           <i className="fa-solid fa-plus"></i>
         </div>
       </div>
-      {todoList.map(item => 
-        <div className="card todo_card" key={item.id}>
-          <EditTask model={item}/>
-          <div>
-            <i className="fa-solid fa-xmark" onClick={() => handleDelete(item.id)}></i>
+      <div className="todo_list_container">
+        {todoList.map(item => 
+          <div className="card todo_card" key={item.id}>
+            <EditTask model={item}/>
+            <div className="input_icon">
+              <i className="fa-solid fa-xmark" onClick={() => handleDelete(item.id)}></i>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
+ 
       <p>{todoList.length} item</p>
     </section>
   )

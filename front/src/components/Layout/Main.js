@@ -17,7 +17,6 @@ export  function Main () {
   const location = useLocation()
 
   useEffect(() => {
-    console.log('gere')
     if (!store.hasOwnProperty('current_user')) {
       fetch('http://localhost:3000/user/is-logged', {
       credentials: 'include'

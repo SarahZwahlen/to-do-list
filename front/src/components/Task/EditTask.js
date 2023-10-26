@@ -8,7 +8,8 @@ export function EditTask({model}) {
   })
 
   const handleEdit = (e) => {
-    if (e.key === 'Enter' && editTodo.title !== model.title) {
+    console.log('here')
+    if (e.key === 'Enter' && editTodo.title !== model.title ) {
       fetch('http://localhost:3000/task', {
         method: 'PUT',
         credentials: 'include',
@@ -25,10 +26,22 @@ export function EditTask({model}) {
       ...editTodo,
       isCompleted: editTodo.isCompleted? false : true
     })
+    fetch('http://localhost:3000/task', {
+      method: 'PUT',
+      credentials: 'include',
+      body: JSON.stringify(editTodo),
+      headers: {'content-type': 'application/json'}
+    })
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.error(err))
   }
   return(
       <div className="todo_input_container">
-        <div className="checkbox" onClick={handleComplete}></div>
+        <div className="checkbox_container" onClick={handleComplete}>
+          {editTodo.isCompleted && <span className="checkbox active"><i className="fa-solid fa-check"></i></span>}
+          {!editTodo.isCompleted && <span className="checkbox inactive"></span>}
+        </div>
         <input type='text' value={editTodo.title} onChange={(e) => setEditTodo({...editTodo, title: e.target.value})} onKeyDown={handleEdit}></input>
       </div>
   )
