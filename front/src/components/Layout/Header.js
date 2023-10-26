@@ -16,9 +16,8 @@ export function Header () {
     .then(res => res.json())
     .then(data => {
       if (data.message === 'User is deconnected') {
-        console.log(data.message)
         dispatch(LOG_OUT())
-        navigate('/')
+        window.location.reload()
       } 
     })
     .catch(err => console.error(err))
