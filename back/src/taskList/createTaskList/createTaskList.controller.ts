@@ -29,7 +29,7 @@ const createTaskListController = async (req: Request, res: Response) => {
                 title: newTaskList?.title,
                 description: newTaskList?.description,
                 id: newTaskList?.id,
-                tasks: newTaskList?.tasks ? newTaskList.tasks : null
+                tasks: []
             }
         });
     } catch (error) {

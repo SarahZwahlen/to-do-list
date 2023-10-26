@@ -6,7 +6,7 @@ const checkTaskListExistence = async (
 ) => {
     const taskList = await taskListRepo.findById(taskListId);
     if (!taskList) {
-        throw new Error('This task list does not exists');
+        throw new Error('This task list does not exists in database');
     }
     return taskList;
 };
