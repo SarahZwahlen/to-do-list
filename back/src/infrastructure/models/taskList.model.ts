@@ -20,11 +20,12 @@ const taskListSchema = new Schema<TaskList>(
             type: String,
             required: false
         },
-        tasks: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Task',
-            required: false
-        },
+        tasks: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Task'
+            }
+        ],
         owner: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
