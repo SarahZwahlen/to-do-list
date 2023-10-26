@@ -3,18 +3,21 @@ import { useState } from "react"
 
 import { EditTask } from '../Task/EditTask'
 
-export function NewTask() {
+export function NewTask({taskListId}) {
   const [newTodo, setNewTodo] = useState({
     title: "",
   })
   const [editTodo, setEditTodo] = useState({})
   const [todoList, setTodoList] = useState([])
-
+ 
   const handleNewTodo = (e) => {
-    if(e.key === 'Enter' && newTodo.title.length>0) {
+    if((e.key === 'Enter' || e.type === 'click')  && newTodo.title.length>0) {
       fetch('http://localhost:3000/task/create', {
         method: 'POST',
-        body: JSON.stringify(newTodo),
+        body: JSON.stringify({
+          taskListId: taskListId,
+          ...newTodo
+        }),
         credentials: 'include',
         headers: {'Content-type': 'application/json'},
       })
@@ -50,8 +53,8 @@ export function NewTask() {
           </div>
           <input type='text' placeholder="Create a new todo.." value={newTodo.title} onChange={(e) => setNewTodo({...newTodo, title: e.target.value})} onKeyDown={handleNewTodo}></input>
         </div>
-        <div className="input_icon">
-          <i className="fa-solid fa-plus"></i>
+        <div className="input_icon" >
+          <i className="fa-solid fa-plus" onClick={handleNewTodo}></i>
         </div>
       </div>
       <div className="todo_list_container">

@@ -47,7 +47,7 @@ export  function Main () {
       { (location.pathname ==='/' && isLogged) && 
         <section className='todo_home'>
           <h1>Start your To do</h1>
-          <Link to='new_task' className='link card card_home'>Create a new To do</Link>
+          <Link to='new_task_list' className='link card card_home'>New task</Link>
         </section>
       }
     </>
