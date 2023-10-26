@@ -60,7 +60,7 @@ describe('User wants to delete a task', () => {
                     taskRepositoryInMemory,
                     userRepositoryInMemory
                 )
-        ).rejects.toThrow('Task does not exists in database.');
+        ).rejects.toThrow('This task does not exists in database');
     });
 
     test('User is not the task owner', async () => {

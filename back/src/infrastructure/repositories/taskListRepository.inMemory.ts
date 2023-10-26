@@ -44,10 +44,27 @@ const taskListRepositoryInMemory: TaskListReposirotyInterface & {
                 (task) => !tasksId.includes(task.id)
             );
         }
-    
+
         this.taskLists = this.taskLists.filter(
             (taskList) => taskList.id !== taskListId
         );
+    },
+    addTask: async function (taskListId, task) {
+        const taskList = this.taskLists.find(
+            (taskList: TaskList) => taskList.id === taskListId
+        );
+
+        const taskListIndex = this.taskLists.indexOf(taskList!);
+
+        if (
+            !this.taskLists[taskListIndex].tasks ||
+            this.taskLists[taskListIndex].tasks?.length === 0
+        ) {
+            this.taskLists[taskListIndex].tasks = [task];
+        } else {
+            this.taskLists[taskListIndex].tasks?.push(task);
+        }
+        return this.taskLists[taskListIndex];
     }
 };
 

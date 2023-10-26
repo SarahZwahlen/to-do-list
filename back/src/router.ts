@@ -12,6 +12,7 @@ import isUserLoggedController from './user/isLogged/isUserLogged.controller';
 import updateUserController from './user/updateUser/updateUser.controller';
 import createTaskListController from './taskList/createTaskList/createTaskList.controller';
 import deleteTaskListController from './taskList/deteteTaskList/deleteTaskList.controller';
+import addTaskConntroller from './taskList/addTask/addTask.controller';
 
 const router = express.Router();
 
@@ -30,6 +31,7 @@ router.post('/task-list/create', createTaskListController);
 //PUT
 router.put('/user', updateUserController);
 router.put('/task', updateTaskController);
+router.put('/task-list/add-task', addTaskConntroller);
 
 //DELETE
 router.delete('/user', deleteUserController);
