@@ -1,5 +1,6 @@
 import { TaskListReposirotyInterface } from '../../infrastructure/persistence/taskListRepository.interface';
 import { UserRepositoryInterface } from '../../infrastructure/persistence/userRepository.interface';
+import checkTaskListExistence from '../../tooling/validators/checkTaskListExistence';
 import checkUserExistence from '../../tooling/validators/checkUserExistence';
 
 const deleteTaskListUseCase = async (
@@ -8,13 +9,8 @@ const deleteTaskListUseCase = async (
     userRepo: UserRepositoryInterface,
     taskListRepo: TaskListReposirotyInterface
 ) => {
-    console.log('user id', userId);
     await checkUserExistence(userId, userRepo);
-    const taskList = await taskListRepo.findById(taskListId);
-
-    if (!taskList) {
-        throw new Error('This task list does not exists in database');
-    }
+    await checkTaskListExistence(taskListId, taskListRepo);
 
     await taskListRepo.delete(taskListId);
 };
