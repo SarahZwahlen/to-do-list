@@ -22,7 +22,7 @@ export function NewTask({ taskListId }) {
       })
         .then((res) => res.json())
         .then((data) => {
-          setTodoList([data.data, ...todoList]);
+          setTodoList([data.data.task, ...todoList]);
           setNewTodo({ title: "" });
         });
     }
