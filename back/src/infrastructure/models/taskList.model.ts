@@ -7,7 +7,7 @@ type TaskList = {
     title: string;
     description?: string | null;
     owner: User;
-    tasks?: Task[] | Task;
+    tasks?: Task[];
 };
 
 const taskListSchema = new Schema<TaskList>(

@@ -5,13 +5,13 @@ import { TaskRepositoryInterface } from '../persistence/taskRepository.interface
 const taskRepositoryInMemory: TaskRepositoryInterface & {
     tasks: Task[];
     reset: () => void;
-    giventExistingTask: (newTask: Task) => void;
+    givenExistingTask: (newTask: Task) => void;
 } = {
     tasks: [],
     reset: function () {
         this.tasks = [];
     },
-    giventExistingTask: function (newTask) {
+    givenExistingTask: function (newTask) {
         this.tasks.push(newTask);
     },
     createTask: async function (task, owner) {

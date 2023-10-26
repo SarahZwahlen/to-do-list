@@ -18,15 +18,15 @@ describe('User wants to have see all his tasks', () => {
             title: 'Second task',
             owner: firstUser
         });
-        taskRepositoryInMemory.giventExistingTask(firstTask);
-        taskRepositoryInMemory.giventExistingTask(secondTask);
+        taskRepositoryInMemory.givenExistingTask(firstTask);
+        taskRepositoryInMemory.givenExistingTask(secondTask);
 
         //Given a second user that exists in dabatase and has task
         const secondUser = userBuilder({ email: 'second@user.com' });
 
         const thirdTask = taskBuilder({ owner: secondUser });
 
-        taskRepositoryInMemory.giventExistingTask(thirdTask);
+        taskRepositoryInMemory.givenExistingTask(thirdTask);
 
         expect(
             await getAllUserTasksUseCase(
@@ -46,8 +46,8 @@ describe('User wants to have see all his tasks', () => {
             title: 'Second task',
             owner: firstUser
         });
-        taskRepositoryInMemory.giventExistingTask(firstTask);
-        taskRepositoryInMemory.giventExistingTask(secondTask);
+        taskRepositoryInMemory.givenExistingTask(firstTask);
+        taskRepositoryInMemory.givenExistingTask(secondTask);
 
         expect(
             async () =>

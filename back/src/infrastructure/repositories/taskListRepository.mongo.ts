@@ -1,3 +1,4 @@
+import TaskModel, { Task } from '../models/task.model';
 import TaskListModel from '../models/taskList.model';
 import { TaskListReposirotyInterface } from '../persistence/taskListRepository.interface';
 
@@ -9,6 +10,20 @@ const taskListRepositoryMongo: TaskListReposirotyInterface = {
         });
         await newTaskList.save();
         return newTaskList;
+    },
+    findById: async (taskListId) => {
+        return await TaskListModel.findOne({ _id: taskListId });
+    },
+    delete: async (taskListId) => {
+        const taskList = await TaskListModel.findOne({ _id: taskListId });
+        if (taskList?.tasks) {
+            const tasks = taskList.tasks;
+            tasks.forEach(async (task: Task) => {
+                await TaskModel.deleteOne({ _id: task.id });
+            });
+        }
+
+        await TaskListModel.deleteOne({ _id: taskListId });
     }
 };
 

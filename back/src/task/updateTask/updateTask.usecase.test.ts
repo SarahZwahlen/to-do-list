@@ -16,7 +16,7 @@ describe('User wants to update a task', () => {
 
         //Given a task linked to the user, that exists in database
         const task = taskBuilder({ owner: user });
-        taskRepositoryInMemory.giventExistingTask(task);
+        taskRepositoryInMemory.givenExistingTask(task);
 
         //Given new task data for updapte
         const newTaskData: Partial<
@@ -50,7 +50,7 @@ describe('User wants to update a task', () => {
 
         //Given a task linked to the user, that exists in database
         const task = taskBuilder({ owner: user });
-        taskRepositoryInMemory.giventExistingTask(task);
+        taskRepositoryInMemory.givenExistingTask(task);
 
         //Given new task data for updapte
         const newTaskData: Partial<
@@ -119,7 +119,7 @@ describe('User wants to update a task', () => {
 
         //Given a task linked to the user, that exists in database
         const task = taskBuilder({ owner: user });
-        taskRepositoryInMemory.giventExistingTask(task);
+        taskRepositoryInMemory.givenExistingTask(task);
 
         //Given new task data for updapte
         const newTaskData: Partial<
