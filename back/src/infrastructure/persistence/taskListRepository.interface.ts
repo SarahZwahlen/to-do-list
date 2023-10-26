@@ -6,6 +6,8 @@ type TaskListReposirotyInterface = {
         data: Partial<Pick<TaskList, 'description' | 'title'>>,
         user: User
     ) => Promise<TaskList | null>;
+    findById: (taskListId: string) => Promise<TaskList | null>;
+    delete: (taskListId: string) => Promise<void>;
 };
 
 export type { TaskListReposirotyInterface };

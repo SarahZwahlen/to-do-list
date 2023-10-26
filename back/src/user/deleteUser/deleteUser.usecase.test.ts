@@ -15,7 +15,7 @@ describe('User wants to delete his account', () => {
 
         //Given a task that exists in database and who is linked to the user
         const task = taskBuilder({ owner: user });
-        taskRepositoryInMemory.giventExistingTask(task);
+        taskRepositoryInMemory.givenExistingTask(task);
 
         await deleteUserUseCase(user.id, userRepositoryInMemory);
         expect(userRepositoryInMemory.users).not.toContain(user);
@@ -28,7 +28,7 @@ describe('User wants to delete his account', () => {
 
         //Given a task that exists in database and who is linked to the user
         const task = taskBuilder({ owner: user });
-        taskRepositoryInMemory.giventExistingTask(task);
+        taskRepositoryInMemory.givenExistingTask(task);
 
         expect(
             async () => await deleteUserUseCase(user.id, userRepositoryInMemory)

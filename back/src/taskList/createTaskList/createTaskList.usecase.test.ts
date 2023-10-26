@@ -1,7 +1,7 @@
-import taskListRepositoryInMemory from '../infrastructure/repositories/taskListRepository.inMemory';
-import userRepositoryInMemory from '../infrastructure/repositories/userRepository.inMemory';
-import taskListBuilder from '../tooling/builders/taskList.builder';
-import userBuilder from '../tooling/builders/user.buider';
+import taskListRepositoryInMemory from '../../infrastructure/repositories/taskListRepository.inMemory';
+import userRepositoryInMemory from '../../infrastructure/repositories/userRepository.inMemory';
+import taskListBuilder from '../../tooling/builders/taskList.builder';
+import userBuilder from '../../tooling/builders/user.buider';
 import createTaskListUseCase from './createTaskList.usecase';
 
 describe('User wants to create a new task list', () => {

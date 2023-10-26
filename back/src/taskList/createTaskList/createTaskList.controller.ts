@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import createTaskListUseCase from './createTaskList.usecase';
-import userRepositoryMongo from '../infrastructure/repositories/userRepository.mongo';
-import taskListRepositoryMongo from '../infrastructure/repositories/taskListRepository.mongo';
+import userRepositoryMongo from '../../infrastructure/repositories/userRepository.mongo';
+import taskListRepositoryMongo from '../../infrastructure/repositories/taskListRepository.mongo';
 
 const createTaskListController = async (req: Request, res: Response) => {
     const userSession = req.session.user;

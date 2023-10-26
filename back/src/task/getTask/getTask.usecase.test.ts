@@ -16,8 +16,8 @@ describe('User wants to get a task', () => {
         //Given tasks that exists in database
         const firstTask = taskBuilder({ title: 'First task', owner: user });
         const secondTask = taskBuilder({ title: 'Second task', owner: user });
-        taskRepositoryInMemory.giventExistingTask(firstTask);
-        taskRepositoryInMemory.giventExistingTask(secondTask);
+        taskRepositoryInMemory.givenExistingTask(firstTask);
+        taskRepositoryInMemory.givenExistingTask(secondTask);
 
         expect(
             await getTaskUseCase(
@@ -35,7 +35,7 @@ describe('User wants to get a task', () => {
 
         //Given a task that exists in database
         const firstTask = taskBuilder({ title: 'First task', owner: user });
-        taskRepositoryInMemory.giventExistingTask(firstTask);
+        taskRepositoryInMemory.givenExistingTask(firstTask);
 
         expect(
             async () =>
@@ -59,7 +59,7 @@ describe('User wants to get a task', () => {
 
         //Given task that exists in database
         const firstTask = taskBuilder({ title: 'First task', owner: user });
-        taskRepositoryInMemory.giventExistingTask(firstTask);
+        taskRepositoryInMemory.givenExistingTask(firstTask);
 
         expect(
             async () =>

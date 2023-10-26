@@ -14,10 +14,10 @@ describe('User wants to delete a task', () => {
         userRepositoryInMemory.givenExistingUser(user);
         //Given a task that exists in database
         const firstTask = taskBuilder({ title: 'First Task', owner: user });
-        taskRepositoryInMemory.giventExistingTask(firstTask);
+        taskRepositoryInMemory.givenExistingTask(firstTask);
         // Given a second task that exists in database
         const secondTask = taskBuilder({ title: 'Second Task', owner: user });
-        taskRepositoryInMemory.giventExistingTask(secondTask);
+        taskRepositoryInMemory.givenExistingTask(secondTask);
         await deleteTaskUseCase(
             secondTask.id,
             user.id,
@@ -32,7 +32,7 @@ describe('User wants to delete a task', () => {
         const user = userBuilder();
         //Given a task that exists in database
         const firstTask = taskBuilder({ title: 'First Task', owner: user });
-        taskRepositoryInMemory.giventExistingTask(firstTask);
+        taskRepositoryInMemory.givenExistingTask(firstTask);
 
         expect(
             async () =>
@@ -77,7 +77,7 @@ describe('User wants to delete a task', () => {
 
         //Given a task in database, that own to firstUser and exists in databse
         const task = taskBuilder({ owner: firstUser });
-        taskRepositoryInMemory.giventExistingTask(task);
+        taskRepositoryInMemory.givenExistingTask(task);
 
         expect(
             async () =>
