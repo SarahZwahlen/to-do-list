@@ -7,6 +7,7 @@ import {UserDashboard} from '../components/User/UserDashboard'
 import { Task } from '../components/Task/Task'
 import { EditTask } from '../components/Task/EditTask'
 import { NewTask } from '../components/Task/NewTask'
+import { NewTodoList } from '../components/TodoList/NewTodoList'
 
 const privateRoutes = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const privateRoutes = createBrowserRouter([
       { path: 'task', element: <Task/>, children: [
         { path: 'edit_task', element: <EditTask/> }
       ]},
+      { path: 'new_task_list', element: <NewTodoList/>},
       { path: '*', element: <NotFound/> }
     ]
   }

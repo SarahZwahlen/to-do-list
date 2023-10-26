@@ -6,9 +6,9 @@ export function EditTask({model}) {
     id: model.id,
     isCompleted: model.isCompleted
   })
+  const [clicked, setClicked] = useState(false)
 
   const handleEdit = (e) => {
-    console.log('here')
     if (e.key === 'Enter' && editTodo.title !== model.title ) {
       fetch('http://localhost:3000/task', {
         method: 'PUT',
@@ -17,7 +17,10 @@ export function EditTask({model}) {
         headers: {'content-type': 'application/json'}
       })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+          console.log(data)
+          setClicked(false)
+        })
         .catch(err => console.error(err))
     }
   }
@@ -42,7 +45,11 @@ export function EditTask({model}) {
           {editTodo.isCompleted && <span className="checkbox active"><i className="fa-solid fa-check"></i></span>}
           {!editTodo.isCompleted && <span className="checkbox inactive"></span>}
         </div>
-        <input type='text' value={editTodo.title} onChange={(e) => setEditTodo({...editTodo, title: e.target.value})} onKeyDown={handleEdit}></input>
+        <input type='text' disabled={!clicked} value={editTodo.title} onChange={(e) => setEditTodo({...editTodo, title: e.target.value})} onKeyDown={handleEdit}></input>
+        <div className="input_icon">
+          {!clicked && <i className="fa-solid fa-pen-to-square" onClick={() => setClicked(true)}></i>}
+        </div>
+        
       </div>
   )
 
