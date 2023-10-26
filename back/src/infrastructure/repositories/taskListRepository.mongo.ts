@@ -15,9 +15,13 @@ const taskListRepositoryMongo: TaskListReposirotyInterface = {
         return await TaskListModel.findOne({ _id: taskListId });
     },
     delete: async (taskListId) => {
-        const taskList = await TaskListModel.findOne({ _id: taskListId });
+        const taskList = await TaskListModel.findOne({
+            _id: taskListId
+        }).populate('tasks');
+
         if (taskList?.tasks) {
             const tasks = taskList.tasks;
+
             tasks.forEach(async (task: Task) => {
                 await TaskModel.deleteOne({ _id: task.id });
             });
