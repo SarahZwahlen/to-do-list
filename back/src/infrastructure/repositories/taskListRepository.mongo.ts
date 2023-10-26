@@ -24,6 +24,16 @@ const taskListRepositoryMongo: TaskListReposirotyInterface = {
         }
 
         await TaskListModel.deleteOne({ _id: taskListId });
+    },
+    addTask: async (taskListId, task) => {
+        return await TaskListModel.findOneAndUpdate(
+            { _id: taskListId },
+            {
+                $push: {
+                    tasks: task
+                }
+            }
+        );
     }
 };
 

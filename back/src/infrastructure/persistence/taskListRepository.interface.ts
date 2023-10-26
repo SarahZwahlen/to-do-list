@@ -1,3 +1,4 @@
+import { Task } from '../models/task.model';
 import { TaskList } from '../models/taskList.model';
 import { User } from '../models/user.model';
 
@@ -8,6 +9,7 @@ type TaskListReposirotyInterface = {
     ) => Promise<TaskList | null>;
     findById: (taskListId: string) => Promise<TaskList | null>;
     delete: (taskListId: string) => Promise<void>;
+    addTask: (taskListId: string, task: Task) => Promise<TaskList | null>;
 };
 
 export type { TaskListReposirotyInterface };
