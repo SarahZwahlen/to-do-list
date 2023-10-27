@@ -6,7 +6,6 @@ import { EditTask } from "../Task/EditTask";
 export function EditTodoList() {
   const { list_id } = useParams();
 
-  console.log(list_id);
   const [list_data, setListData] = useState({ title: "" });
   const [tasks, setTasks] = useState([]);
 
@@ -104,12 +103,12 @@ export function EditTodoList() {
                 onKeyDown={handleNewTodo}
               ></input>
             </div>
-            <div className="input_icon">
+            <button className="input_icon secondary-button">
               <i className="fa-solid fa-plus" onClick={handleNewTodo}></i>
-            </div>
+            </button>
           </div>
           <div className="todo_list_container">
-            { tasks.map(item => (
+            {tasks.map((item) => (
               <div className="card todo_card" key={item._id}>
                 <EditTask model={item} />
                 <button className="input_icon secondary-button">
