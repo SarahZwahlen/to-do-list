@@ -41,6 +41,11 @@ const taskListRepositoryMongo: TaskListReposirotyInterface = {
     },
     getAllUserTaskList: async (user) => {
         return await TaskListModel.find({ owner: user });
+    },
+    getAllTasksOfTaskList: async (taskListId) => {
+        return await TaskListModel.findOne({ _id: taskListId }).populate(
+            'tasks'
+        );
     }
 };
 
