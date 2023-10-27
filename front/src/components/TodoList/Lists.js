@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 
+import { Link } from "react-router-dom"
+
 import { TodoList } from "./TodoList"
 
 export function Lists () {
@@ -20,10 +22,12 @@ export function Lists () {
 
   return (
     <section>
-      {user_todo_list.length>0 && <aside>
+      {user_todo_list.length>0 && <aside className='grid_container'>
         <h1>Your latest List</h1>
-        <div>
-          { user_todo_list.map(todo => <TodoList key={todo.id} data={todo} />)}
+        <div className="grid">
+          { user_todo_list.map(todo => <Link key={todo.id} className='link' to={`edit_todo_list/${todo.id}`}>
+            <TodoList data={todo} />
+          </Link>)}
         </div>
       </aside>}
     </section>
