@@ -7,7 +7,7 @@ type TaskRepositoryInterface = {
         owner: User
     ) => Promise<Task | null>;
     findById: (taskId: string) => Promise<Task | null>;
-    deleteTask: (taskId: string) => Promise<void>;
+    deleteTask: (task: Task) => Promise<void>;
     getAllTasks: (userId: string) => Promise<Task[] | null>;
     updateTask: (
         data: Partial<Pick<Task, 'description' | 'title' | 'isCompleted'>> &

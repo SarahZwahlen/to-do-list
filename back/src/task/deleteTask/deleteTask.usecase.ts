@@ -17,7 +17,7 @@ const deleteTaskUseCase = async (
         throw new Error('You are not the task owner');
     }
 
-    await taskRepo.deleteTask(task.id);
+    await taskRepo.deleteTask(task);
 };
 
 export default deleteTaskUseCase;
