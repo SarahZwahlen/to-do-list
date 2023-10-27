@@ -94,4 +94,37 @@ describe('User wants to see all the tasks of a task list', () => {
                 )
         ).rejects.toThrow('This task list does not exists in database');
     });
+
+    test('User is not the task list owner', async () => {
+        //Given a user that exists in databse
+        const user = userBuilder();
+        userRepositoryInMemory.givenExistingUser(user);
+
+        //Given an other user that exists in database
+        const otherUser = userBuilder({ email: 'other@user.com' });
+        userRepositoryInMemory.givenExistingUser(otherUser);
+
+        //Given tasks that exists in database
+        const firstTask = taskBuilder({ owner: user });
+        const secondTask = taskBuilder({ owner: user });
+        taskRepositoryInMemory.givenExistingTask(firstTask);
+        taskRepositoryInMemory.givenExistingTask(secondTask);
+
+        //Given a taskList that exists in database
+        const taskList = taskListBuilder({
+            owner: user,
+            tasks: [firstTask, secondTask]
+        });
+        taskListRepositoryInMemory.givenExistingTaskList(taskList);
+
+        expect(
+            async () =>
+                await getTasksOfTaskListUseCase(
+                    otherUser.id,
+                    taskList.id,
+                    userRepositoryInMemory,
+                    taskListRepositoryInMemory
+                )
+        ).rejects.toThrow('You are not the task list owner');
+    });
 });
