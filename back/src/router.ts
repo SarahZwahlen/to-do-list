@@ -24,7 +24,10 @@ router.get('/user/is-logged', isUserLoggedController);
 router.get('/task/all-user-tasks', getAllUserTasksController);
 router.get('/task/unique/:taskId', getTaskController);
 router.get('/task-list/all-users-lists', getAllUserTaskListsController);
-router.get('/task-list/all-tasks-of-list', getTasksOfTaskListController);
+router.get(
+    '/task-list/all-tasks-of-list/:taskListId',
+    getTasksOfTaskListController
+);
 
 //POST
 router.post('/user/login', logUserController);
