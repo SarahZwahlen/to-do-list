@@ -13,7 +13,7 @@ const privateRoutes = createBrowserRouter([
     children: [
       { path: 'settings', element: <UserDashboard/> },
       { path: 'new_task_list', element: <NewTodoList/>},
-      { path: '*', element: <NotFound/> }
+      { path: '*', element: <NotFound/>}
     ]
   }
 ])
