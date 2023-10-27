@@ -58,20 +58,20 @@ export function NewTask({ taskListId }) {
             onKeyDown={handleNewTodo}
           ></input>
         </div>
-        <div className="input_icon">
+        <button className="input_icon secondary-button">
           <i className="fa-solid fa-plus" onClick={handleNewTodo}></i>
-        </div>
+        </button>
       </div>
       <div className="todo_list_container">
         {todoList.map((item) => (
           <div className="card todo_card" key={item.id}>
             <EditTask model={item} />
-            <div className="input_icon">
+            <button className="input_icon secondary-button">
               <i
                 className="fa-solid fa-xmark"
                 onClick={() => handleDelete(item.id)}
               ></i>
-            </div>
+            </button>
           </div>
         ))}
       </div>

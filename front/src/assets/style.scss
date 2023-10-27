@@ -1,23 +1,25 @@
-::-webkit-input-placeholder {
-/* For Chrome/Edge/Safari */
-  color: white;
-  /* Red color for the placeholder text */
-}
+// ::-webkit-input-placeholder {
+// /* For Chrome/Edge/Safari */
+//   color: white;
+//   /* Red color for the placeholder text */
+// }
 
-:-moz-placeholder {
-/* For Firefox */
-  color: white;
-}
+// :-moz-placeholder {
+// /* For Firefox */
+//   color: white;
+// }
 
-::-moz-placeholder {
-/* For older versions of Firefox */
-  color: white;
-}
+// ::-moz-placeholder {
+// /* For older versions of Firefox */
+//   color: white;
+// }
 
-:-ms-input-placeholder {
-/* For Internet Explorer/Edge */
-  color: white;
-}
+// :-ms-input-placeholder {
+// /* For Internet Explorer/Edge */
+//   color: white;
+// }
+
+$light-white-op-200: rgba(255, 255, 255, 0.200);
 
 
 // Global
@@ -51,6 +53,44 @@
   outline-offset: .05em;
 }
 
+button{
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.secondary-button{
+  background-color: transparent;
+  border-radius: 5px;
+  color: white;
+  border : transparent;
+  transition : 0.2s;
+  padding :0.5rem 0.25rem;
+  min-width: 2rem;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.137);
+  }
+}
+
+@mixin input {
+      border-radius: 5px;
+      background: rgb(249, 250, 250);
+      border: 1px solid transparent;
+      font-size: 16px;
+      height: 20px;
+      line-height: 24px;
+      padding: 7px 8px;
+      color: rgb(8, 9, 10);
+      box-shadow: none;
+      &:focus {
+        // background-color: #fff;
+        border: 2px solid #3b49df;
+        box-shadow: 1px 1px 0 #3b49df;
+        outline: #3b49df;
+      }
+}
+
 .button-89:active {
   background: var(--color);
   color: #fff;
@@ -71,6 +111,10 @@
   .active {
     background: linear-gradient(90deg, rgb(115, 165,239), rgb(149, 126, 237));
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .p-error {
@@ -89,6 +133,11 @@
   border-radius: 5px;
   background-color: rgb(36, 41, 60);
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  // transition: 0.2s;
+
+  // &:hover {
+  //   background-color:  $light-white-op-200;
+  // }
 }
 
 .button {
@@ -112,8 +161,13 @@ header {
     .logged_icons {
       display: flex;
       gap: 1.5rem;
-      i{
-        font-size: 1.3rem;
+      button{
+        background-color: transparent;
+        border : none;
+        i{
+          font-size: 1.3rem;
+          color : white
+        }
       }
     }
   }
@@ -128,6 +182,8 @@ header {
   gap: 2rem;
   .login_container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-evenly;
     gap: 10px;
     width: 100%;
@@ -176,21 +232,7 @@ footer {
     align-items: center;
     gap: 1rem;
     input{
-      border-radius: 5px;
-      background: rgb(249, 250, 250);
-      border: 1px solid rgb(181, 189, 196);
-      font-size: 16px;
-      height: 20px;
-      line-height: 24px;
-      padding: 7px 8px;
-      color: rgb(8, 9, 10);
-      box-shadow: none;
-      &:focus {
-        background-color: #fff;
-        border: 2px solid #3b49df;
-        box-shadow: 1px 1px 0 #3b49df;
-        outline: #3b49df;
-      }
+      @include input
     }
   }
 
@@ -218,23 +260,9 @@ footer {
     width: 70%;
   }
   input {
-    width: 90%;
-    border-radius: 5px;
-    background: rgb(249, 250, 250);
-    border: 1px solid rgb(181, 189, 196);
-    font-size: 16px;
-    height: 20px;
-    line-height: 24px;
-    padding: 7px 8px;
-    color: rgb(8, 9, 10);
-    box-shadow: none;
-        
-    &:focus {
-      background-color: #fff;
-      border: 2px solid #3b49df;
-      box-shadow: 1px 1px 0 #3b49df;
-      outline: #3b49df;
-    }
+    @include input();
+    width : 90%
+
   }
   .settings{
     margin-top: 1rem;
@@ -316,6 +344,7 @@ footer {
     width: 30%;
   }
   input {
+    @include input();
     width: 60%;
   }
 }
