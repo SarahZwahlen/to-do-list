@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import updateUserUseCase from './updateUser.usecase';
 import userRepositoryMongo from '../../infrastructure/repositories/userRepository.mongo';
-import Ajv, { JSONSchemaType } from 'ajv/dist/core';
+import Ajv, { JSONSchemaType } from 'ajv';
 import { User } from '../../infrastructure/models/user.model';
 
 const updateUserController = async (req: Request, res: Response) => {
@@ -32,6 +32,7 @@ const updateUserController = async (req: Request, res: Response) => {
     if (!validate(body)) {
         return res.status(400).json({ message: 'Invalid body format' });
     }
+
     try {
         const newData = { ...body, id: userSession };
         const updatedUser = await updateUserUseCase(
