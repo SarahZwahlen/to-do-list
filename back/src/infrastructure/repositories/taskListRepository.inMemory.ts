@@ -70,6 +70,13 @@ const taskListRepositoryInMemory: TaskListReposirotyInterface & {
         return this.taskLists.filter(
             (taskList) => taskList.owner.id === user.id
         );
+    },
+    getAllTasksOfTaskList: async function (taskListId) {
+        const result = this.taskLists.find(
+            (taskList) => taskList.id === taskListId
+        );
+
+        return result ? result : null;
     }
 };
 
