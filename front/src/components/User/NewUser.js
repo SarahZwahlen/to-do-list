@@ -43,7 +43,7 @@ export function NewUser() {
         } else {
           const { password , ...current_user } = new_user 
           dispatch(LOG_IN(current_user))
-          navigate('/')
+          navigate('/login')
         }
       })
       .catch(error => console.log(error))
