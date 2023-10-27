@@ -38,6 +38,9 @@ const taskListRepositoryMongo: TaskListReposirotyInterface = {
                 }
             }
         );
+    },
+    getAllUserTaskList: async (user) => {
+        return await TaskListModel.find({ owner: user });
     }
 };
 
