@@ -65,6 +65,11 @@ const taskListRepositoryInMemory: TaskListReposirotyInterface & {
             this.taskLists[taskListIndex].tasks?.push(task);
         }
         return this.taskLists[taskListIndex];
+    },
+    getAllUserTaskList: async function (user) {
+        return this.taskLists.filter(
+            (taskList) => taskList.owner.id === user.id
+        );
     }
 };
 

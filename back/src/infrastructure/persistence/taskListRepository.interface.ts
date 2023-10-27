@@ -10,6 +10,7 @@ type TaskListReposirotyInterface = {
     findById: (taskListId: string) => Promise<TaskList | null>;
     delete: (taskListId: string) => Promise<void>;
     addTask: (taskListId: string, task: Task) => Promise<TaskList | null>;
+    getAllUserTaskList: (user: User) => Promise<TaskList[] | null>;
 };
 
 export type { TaskListReposirotyInterface };

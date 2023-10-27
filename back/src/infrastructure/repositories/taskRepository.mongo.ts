@@ -1,4 +1,5 @@
 import TaskModel, { Task } from '../models/task.model';
+import TaskListModel from '../models/taskList.model';
 import { TaskRepositoryInterface } from '../persistence/taskRepository.interface';
 
 const taskRepositoryMongo: TaskRepositoryInterface = {
@@ -12,6 +13,19 @@ const taskRepositoryMongo: TaskRepositoryInterface = {
         return await TaskModel.findOne({ _id: taskId }).populate('owner');
     },
     deleteTask: async (taskId) => {
+        const taskList = await TaskListModel.findOne().populate({
+            path: 'tasks',
+            match: { id: taskId }
+        });
+        const task = await TaskModel.findOne({ _id: taskId });
+        await TaskListModel.updateOne(
+            { _id: taskList!.id },
+            {
+                $pull: {
+                    tasks: task
+                }
+            }
+        );
         await TaskModel.deleteOne({ _id: taskId });
     },
     getAllTasks: async (userId) => {
