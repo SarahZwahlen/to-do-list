@@ -41,8 +41,7 @@ const logUserController = async (req: Request, res: Response) => {
                 user: {
                     firstname: user.firstname,
                     surname: user.surname,
-                    email: user.email,
-                    id: user.id
+                    email: user.email
                 }
             }
         });
