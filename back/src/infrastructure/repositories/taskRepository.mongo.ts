@@ -12,21 +12,21 @@ const taskRepositoryMongo: TaskRepositoryInterface = {
     findById: async (taskId) => {
         return await TaskModel.findOne({ _id: taskId }).populate('owner');
     },
-    deleteTask: async (taskId) => {
+    deleteTask: async (task) => {
         const taskList = await TaskListModel.findOne().populate({
             path: 'tasks',
-            match: { id: taskId }
+            match: { id: task.id }
         });
-        const task = await TaskModel.findOne({ _id: taskId });
+        const theTask = await TaskModel.findOne({ _id: task });
         await TaskListModel.updateOne(
             { _id: taskList!.id },
             {
                 $pull: {
-                    tasks: task
+                    tasks: theTask!._id
                 }
             }
         );
-        await TaskModel.deleteOne({ _id: taskId });
+        await TaskModel.deleteOne({ _id: task });
     },
     getAllTasks: async (userId) => {
         return await TaskModel.find({ owner: userId });
