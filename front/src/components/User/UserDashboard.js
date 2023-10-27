@@ -21,12 +21,13 @@ export function UserDashboard() {
       headers: { "content-type": "application/json" },
       credentials: "include",
     })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.message !== "User update failed") {
-          const { password, ...editedUser } = editUser;
-          setEditUser(data.data);
-          dispatch(LOG_IN(editedUser));
+      .then(res => res.json())
+      .then(data => {
+        if(data.message !== 'User update failed') {
+          const {password, ...editedUser} = editUser
+          setEditUser(data.data)
+          dispatch(LOG_IN(editedUser))
+          navigate('/')
         }
       })
       .catch((error) => console.log(error));

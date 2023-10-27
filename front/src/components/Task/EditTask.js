@@ -3,10 +3,10 @@ import { useState } from "react";
 export function EditTask({ model }) {
   const [editTodo, setEditTodo] = useState({
     title: model.title,
-    id: model.id,
-    isCompleted: model.isCompleted,
-  });
-  const [clicked, setClicked] = useState(false);
+    id: model._id,
+    isCompleted: model.isCompleted
+  })
+  const [clicked, setClicked] = useState(model.isCompleted)
 
   const handleEdit = (e) => {
     if (e.key === "Enter" && editTodo.title !== model.title) {
@@ -16,10 +16,9 @@ export function EditTask({ model }) {
         body: JSON.stringify(editTodo),
         headers: { "content-type": "application/json" },
       })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          setClicked(false);
+        .then(res => res.json())
+        .then(data => {
+          setClicked(false)
         })
         .catch((err) => console.error(err));
     }

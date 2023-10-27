@@ -43,7 +43,7 @@ export function NewUser() {
         } else {
           const { password , ...current_user } = new_user 
           dispatch(LOG_IN(current_user))
-          navigate('/')
+          navigate('/login')
         }
       })
       .catch(error => console.log(error))
@@ -72,7 +72,7 @@ export function NewUser() {
           </div>
           <p className="p-error">{errors}</p>
           <div>
-            <button className="button-56" onClick={handleSubmit}>Sign in</button>
+            <button className="button-89" onClick={handleSubmit}>Sign in</button>
           </div>
         </fieldset>
         <p>Already have an account? <Link to="/login" className="link">Log in</Link></p>

@@ -109,7 +109,7 @@ export function EditTodoList() {
             </div>
           </div>
           <div className="todo_list_container">
-            {tasks.map((item) => (
+            { tasks.map(item => (
               <div className="card todo_card" key={item._id}>
                 <EditTask model={item} />
                 <button className="input_icon secondary-button">
