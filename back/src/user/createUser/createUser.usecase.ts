@@ -3,7 +3,7 @@ import emailValidator from '../../tooling/validators/email.validator';
 import { UserRepositoryInterface } from '../../infrastructure/persistence/userRepository.interface';
 
 const createUserUseCase = async (
-    data: User,
+    data: Omit<User, 'id'>,
     userRepo: UserRepositoryInterface
 ): Promise<Pick<User, 'email' | 'firstname' | 'id' | 'surname'>> => {
     const isEmailValid = emailValidator(data.email);

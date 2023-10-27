@@ -15,7 +15,8 @@ const userRepositoryInMemory: UserRepositoryInterface & {
         this.users.push(user);
     },
     createUser: async function (data) {
-        const newUser = {
+        // @ts-expect-error
+        const newUser: User = {
             ...data
         };
 

@@ -2,15 +2,29 @@ import { Request, Response } from 'express';
 import deleteTaskUseCase from './deleteTask.usecase';
 import taskRepositoryMongo from '../../infrastructure/repositories/taskRepository.mongo';
 import userRepositoryMongo from '../../infrastructure/repositories/userRepository.mongo';
+import Ajv, { JSONSchemaType } from 'ajv';
 
 const deleteTaskController = async (req: Request, res: Response) => {
     const userSession = req.session.user;
     const body = req.body;
+
+    const ajv = new Ajv();
+
+    const bodySchema: JSONSchemaType<{ taskId: string }> = {
+        type: 'object',
+        properties: {
+            taskId: { type: 'string' }
+        },
+        required: ['taskId']
+    };
+
+    const validate = ajv.compile(bodySchema);
+
     if (!userSession) {
         return res.status(401).json({ message: 'You are not authenticated' });
     }
 
-    if (!body.taskId) {
+    if (!validate(body)) {
         return res.status(400).json({ message: 'There is no task id' });
     }
 

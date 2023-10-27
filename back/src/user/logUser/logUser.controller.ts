@@ -1,9 +1,34 @@
 import { Request, Response } from 'express';
 import logUserUseCase from './logUser.usecase';
 import userRepositoryMongo from '../../infrastructure/repositories/userRepository.mongo';
+import Ajv, { JSONSchemaType } from 'ajv';
 
 const logUserController = async (req: Request, res: Response) => {
     const body = req.body;
+
+    const ajv = new Ajv();
+
+    interface LoginSchema {
+        email: string;
+        password: string;
+    }
+
+    const bodySchema: JSONSchemaType<LoginSchema> = {
+        type: 'object',
+        properties: {
+            email: { type: 'string' },
+            password: { type: 'string' }
+        },
+        required: ['email', 'password']
+    };
+
+    const validate = ajv.compile(bodySchema);
+
+    if (!validate(body)) {
+        return res
+            .status(400)
+            .json({ message: 'Body does not a valid format' });
+    }
 
     try {
         const user = await logUserUseCase(body, userRepositoryMongo);
