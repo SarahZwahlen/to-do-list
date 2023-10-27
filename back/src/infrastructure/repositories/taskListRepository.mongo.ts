@@ -12,7 +12,9 @@ const taskListRepositoryMongo: TaskListReposirotyInterface = {
         return newTaskList;
     },
     findById: async (taskListId) => {
-        return await TaskListModel.findOne({ _id: taskListId });
+        return await TaskListModel.findOne({ _id: taskListId }).populate(
+            'owner'
+        );
     },
     delete: async (taskListId) => {
         const taskList = await TaskListModel.findOne({
