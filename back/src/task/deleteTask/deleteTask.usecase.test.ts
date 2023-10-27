@@ -3,10 +3,13 @@ import userBuilder from '../../tooling/builders/user.buider';
 import userRepositoryInMemory from '../../infrastructure/repositories/userRepository.inMemory';
 import taskRepositoryInMemory from '../../infrastructure/repositories/taskRepository.inMemory';
 import deleteTaskUseCase from './deleteTask.usecase';
+import taskListBuilder from '../../tooling/builders/taskList.builder';
+import taskListRepositoryInMemory from '../../infrastructure/repositories/taskListRepository.inMemory';
 
 describe('User wants to delete a task', () => {
     beforeEach(() => userRepositoryInMemory.reset());
     beforeEach(() => taskRepositoryInMemory.reset());
+    beforeEach(() => taskListRepositoryInMemory.reset());
 
     test('Happy path', async () => {
         // Given a user that exists in database
@@ -18,12 +21,19 @@ describe('User wants to delete a task', () => {
         // Given a second task that exists in database
         const secondTask = taskBuilder({ title: 'Second Task', owner: user });
         taskRepositoryInMemory.givenExistingTask(secondTask);
+
+        //Given a task List that exists in database
+        const taskList = taskListBuilder({ tasks: [firstTask, secondTask] });
+        taskListRepositoryInMemory.givenExistingTaskList(taskList);
+
         await deleteTaskUseCase(
             secondTask.id,
             user.id,
             taskRepositoryInMemory,
             userRepositoryInMemory
         );
+
+        expect(taskList).not.toContain(secondTask);
         expect(taskRepositoryInMemory.tasks).not.toContain(secondTask);
     });
 
