@@ -8,7 +8,7 @@ import { LOG_IN } from '../../store/reducer/userReducer'
 
 import { useEffect, useState } from 'react'
 
-import { TodoList } from '../TodoList/TodoList'
+import { Lists } from '../TodoList/Lists'
 
 export  function Main () {
   const store = useSelector(state => state.user)
@@ -49,7 +49,7 @@ export  function Main () {
         <section className='todo_home'>
           <h1>Start your To do</h1>
           <Link to='new_task_list' className='link card card_home'>New task list</Link>
-          <TodoList/>
+          <Lists/>
         </section>
       }
     </>
