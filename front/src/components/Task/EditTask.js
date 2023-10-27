@@ -3,7 +3,7 @@ import { useState } from "react";
 export function EditTask({model}) {
   const [editTodo, setEditTodo] = useState({
     title: model.title,
-    id: model.id,
+    id: model._id,
     isCompleted: model.isCompleted
   })
   const [clicked, setClicked] = useState(false)

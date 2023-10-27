@@ -27,6 +27,7 @@ export function UserDashboard() {
           const {password, ...editedUser} = editUser
           setEditUser(data.data)
           dispatch(LOG_IN(editedUser))
+          navigate('/')
         }
       })
       .catch(error => console.log(error))

@@ -16,7 +16,7 @@ const updateTaskController = async (req: Request, res: Response) => {
         id: string;
         description?: string;
         title?: string;
-        isCompleted?: string;
+        isCompleted?: boolean;
     }
 
     const bodySchema: JSONSchemaType<UpdateTaskData> = {
@@ -24,7 +24,7 @@ const updateTaskController = async (req: Request, res: Response) => {
         properties: {
             description: { type: 'string', nullable: true },
             title: { type: 'string', nullable: true },
-            isCompleted: { type: 'string', nullable: true },
+            isCompleted: { type: 'boolean', nullable: true },
             id: { type: 'string' }
         },
         required: ['id']
