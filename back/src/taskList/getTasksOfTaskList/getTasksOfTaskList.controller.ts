@@ -4,19 +4,20 @@ import userRepositoryMongo from '../../infrastructure/repositories/userRepositor
 import taskListRepositoryMongo from '../../infrastructure/repositories/taskListRepository.mongo';
 const getTasksOfTaskListController = async (req: Request, res: Response) => {
     const userSession = req.session.user;
-    const body = req.body;
+    const { taskListId } = req.params;
+
     if (!userSession) {
         return res.status(401).json({ message: 'You are not authenticated' });
     }
 
-    if (!body.taskListId) {
+    if (!taskListId) {
         return res.status(400).json({ message: 'There is not TaskListId' });
     }
 
     try {
         const tasks = await getTasksOfTaskListUseCase(
             userSession.id,
-            body.taskListId,
+            taskListId,
             userRepositoryMongo,
             taskListRepositoryMongo
         );
