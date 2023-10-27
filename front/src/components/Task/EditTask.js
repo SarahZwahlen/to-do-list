@@ -6,7 +6,7 @@ export function EditTask({model}) {
     id: model._id,
     isCompleted: model.isCompleted
   })
-  const [clicked, setClicked] = useState(false)
+  const [clicked, setClicked] = useState(model.isCompleted)
 
   const handleEdit = (e) => {
     if (e.key === 'Enter' && editTodo.title !== model.title ) {
@@ -18,7 +18,6 @@ export function EditTask({model}) {
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data)
           setClicked(false)
         })
         .catch(err => console.error(err))
