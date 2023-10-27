@@ -9,8 +9,12 @@ const getTasksOfTaskListUseCase = async (
     userRepo: UserRepositoryInterface,
     taskListRepo: TaskListReposirotyInterface
 ) => {
-    await checkUserExistence(userId, userRepo);
-    await checkTaskListExistence(taskListId, taskListRepo);
+    const user = await checkUserExistence(userId, userRepo);
+    const taskList = await checkTaskListExistence(taskListId, taskListRepo);
+
+    if (taskList.owner.id !== userId) {
+        throw new Error('You are not the task list owner');
+    }
 
     return await taskListRepo.getAllTasksOfTaskList(taskListId);
 };
