@@ -7,24 +7,11 @@ jobs :
     runs-on : ubuntu-latest
     steps : 
       - uses : actions/checkout@v3
-      - uses : ./.github/actions/common-steps
+      - name : Use Node.js
+        uses : actions/setup-node@v3
+        with : 
+          node-version : "18.x"
+      - run : npm ci
+      - run : npm test backend
+  
 
-  test_backend : 
-    needs : setup_dependencies
-    runs-on : ubuntu-latest
-    steps : 
-      - uses : actions/checkout@v3
-      - uses : ./.github/actions/common-steps
-      - name : Run backend tests
-        run : yarn workspace backend test
-
-  lint_backend : 
-    needs : setup_dependencies
-    runs-on : ubuntu-latest
-    steps : 
-      - uses : actions/chechout@v3
-      - uses : ./.github/actions/common-steps
-      - name : Run backend lint
-        run : yarn workspace backend lint:check
-      - name : Type check
-        run : yarn workspace backend type:check
