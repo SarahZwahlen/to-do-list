@@ -12,6 +12,6 @@ jobs :
         with : 
           node-version : "18.x"
       - run : npm ci
-      - run : npm test backend
+      - run : npm test -w backend
   
 
