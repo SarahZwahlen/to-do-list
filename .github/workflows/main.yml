@@ -26,4 +26,4 @@ jobs :
         with : 
           node-version : "18.x"
       - run : npm ci
-      - run : npm lint:check -w backend
+      - run : npm run lint:check -w backend
