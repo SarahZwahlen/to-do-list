@@ -19,7 +19,7 @@ jobs :
         run : yarn workspace backend test
 
   lint_backend : 
-    needs : setup-dependencies
+    needs : setup_dependencies
     runs-on : ubuntu-latest
     steps : 
       - uses : actions/chechout@v4
