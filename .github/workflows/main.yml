@@ -1,7 +1,10 @@
 name : Main CI
 run-name : ${{github.actor}} is running the main CI
-on : [push]
-
+on : 
+  push : 
+    branches : [main]
+  pull_request:
+    branches : [main]
 jobs :
   setup_dependencies : 
     runs-on : ubuntu-latest
