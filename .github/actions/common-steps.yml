@@ -1,0 +1,13 @@
+name : common-steps
+
+runs : 
+  using : "composite"
+  steps : 
+    - name : Use Node.js 18.16.0
+      uses : actions/setup-node@v3
+      with :       
+        node-version : "18.16.0"
+        cache : "yarn"
+        cache-dependency-path : yarn.lock
+    - uses : ./get-dependencies
+    
