@@ -6,14 +6,14 @@ jobs :
   setup_dependencies : 
     runs-on : ubuntu-latest
     steps : 
-      - uses : actions/checkout@v4
+      - uses : actions/checkout@v3
       - uses : ./.github/actions/common-steps
 
   test_backend : 
     needs : setup_dependencies
     runs-on : ubuntu-latest
     steps : 
-      - uses : actions/checkout@v4
+      - uses : actions/checkout@v3
       - uses : ./.github/actions/common-steps
       - name : Run backend tests
         run : yarn workspace backend test
@@ -22,7 +22,7 @@ jobs :
     needs : setup_dependencies
     runs-on : ubuntu-latest
     steps : 
-      - uses : actions/chechout@v4
+      - uses : actions/chechout@v3
       - uses : ./.github/actions/common-steps
       - name : Run backend lint
         run : yarn workspace backend lint:check
