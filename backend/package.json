@@ -8,7 +8,9 @@
         "test:live": "jest --watchAll",
         "test": "jest --testEnvironment=node --runInBand ",
         "lint": "eslint src/**/*.ts",
-        "format": "eslint src/**/*.ts --fix"
+        "format": "eslint src/**/*.ts --fix",
+        "lint:check": "prettier --config ../.prettierrc.json --parser typescript --check \"./src/**/*.{ts,tsx}\" && eslint .",
+        "type:check": "tsc"
     },
     "author": "",
     "license": "ISC",
